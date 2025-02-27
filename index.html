@@ -1,0 +1,1730 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Soni Men's Wear | Dress Your Best</title>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+    <style>
+      /* General Styles */
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+      }
+
+      :root {
+        --primary-color: #f39c12;
+        --secondary-color: #e67e22;
+        --dark-color: #2c3e50;
+        --light-color: #ecf0f1;
+        --text-color: #333;
+        --white-color: #fff;
+      }
+
+      html {
+        scroll-behavior: smooth;
+      }
+
+      body {
+        line-height: 1.6;
+        color: var(--text-color);
+      }
+
+      a {
+        text-decoration: none;
+        color: inherit;
+        transition: all 0.3s ease;
+      }
+
+      ul {
+        list-style: none;
+      }
+
+      img {
+        max-width: 100%;
+        height: auto;
+      }
+
+      .container {
+        width: 100%;
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0 20px;
+      }
+
+      section {
+        padding: 80px 0;
+      }
+
+      .section-title {
+        font-size: 2.5rem;
+        margin-bottom: 30px;
+        text-align: center;
+        position: relative;
+        color: var(--dark-color);
+      }
+
+      .section-title::after {
+        content: "";
+        position: absolute;
+        bottom: -10px;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 80px;
+        height: 3px;
+        background-color: var(--primary-color);
+      }
+
+      .btn {
+        display: inline-block;
+        background: var(--primary-color);
+        color: var(--white-color);
+        padding: 12px 25px;
+        border-radius: 30px;
+        font-size: 1rem;
+        font-weight: 600;
+        box-shadow: 0 4px 15px rgba(243, 156, 18, 0.3);
+        transition: all 0.3s ease;
+      }
+
+      .btn:hover {
+        background: var(--secondary-color);
+        transform: translateY(-3px);
+      }
+
+      /* Header & Navigation */
+      header {
+        background: var(--dark-color);
+        color: var(--white-color);
+        padding: 15px 0;
+        position: fixed;
+        width: 100%;
+        top: 0;
+        z-index: 1000;
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        transition: all 0.3s ease;
+      }
+
+      header.scrolled {
+        padding: 10px 0;
+        background: rgba(44, 62, 80, 0.9);
+        backdrop-filter: blur(10px);
+      }
+
+      .nav-container {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+
+      .logo {
+        font-size: 1.8rem;
+        font-weight: bold;
+        letter-spacing: 1px;
+      }
+
+      .logo span {
+        color: var(--primary-color);
+      }
+
+      nav ul {
+        display: flex;
+      }
+
+      nav li {
+        margin: 0 15px;
+      }
+
+      nav a {
+        font-weight: 500;
+        position: relative;
+      }
+
+      nav a::after {
+        content: "";
+        position: absolute;
+        bottom: -5px;
+        left: 0;
+        width: 0;
+        height: 2px;
+        background-color: var(--primary-color);
+        transition: width 0.3s ease;
+      }
+
+      nav a:hover::after {
+        width: 100%;
+      }
+
+      nav a:hover {
+        color: var(--primary-color);
+      }
+
+      .mobile-toggle {
+        display: none;
+        font-size: 1.5rem;
+        cursor: pointer;
+      }
+
+      /* Hero Section */
+      .hero {
+        background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)),
+          url("https://via.placeholder.com/1920x1080") no-repeat center
+            center/cover;
+        height: 100vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        color: var(--white-color);
+        text-align: center;
+        padding-top: 80px;
+      }
+
+      .hero-content {
+        max-width: 800px;
+        padding: 0 20px;
+      }
+
+      .hero-content h1 {
+        font-size: 3.5rem;
+        margin-bottom: 20px;
+        animation: fadeInDown 1s ease;
+      }
+
+      .hero-content p {
+        font-size: 1.2rem;
+        margin-bottom: 30px;
+        animation: fadeInUp 1s ease;
+      }
+
+      .hero-btn {
+        animation: fadeInUp 1.2s ease;
+      }
+
+      /* About Section */
+      .about {
+        background-color: var(--light-color);
+      }
+
+      .about-content {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        gap: 40px;
+      }
+
+      .about-text {
+        flex: 1;
+        min-width: 300px;
+      }
+
+      .about-text h2 {
+        text-align: left;
+        margin-bottom: 20px;
+      }
+
+      .about-text p {
+        margin-bottom: 20px;
+        font-size: 1.1rem;
+      }
+
+      .about-features {
+        margin-top: 30px;
+      }
+
+      .feature-item {
+        display: flex;
+        align-items: center;
+        margin-bottom: 15px;
+      }
+
+      .feature-icon {
+        color: var(--primary-color);
+        margin-right: 15px;
+        font-size: 1.2rem;
+      }
+
+      .about-image {
+        flex: 1;
+        min-width: 300px;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        border-radius: 10px;
+        overflow: hidden;
+      }
+
+      /* Collection Section */
+      .collection-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+        gap: 30px;
+      }
+
+      .collection-item {
+        background-color: var(--white-color);
+        border-radius: 10px;
+        overflow: hidden;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        transition: all 0.3s ease;
+      }
+
+      .collection-item:hover {
+        transform: translateY(-10px);
+        box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
+      }
+
+      .collection-image {
+        height: 250px;
+        overflow: hidden;
+      }
+
+      .collection-image img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        transition: transform 0.5s ease;
+      }
+
+      .collection-item:hover img {
+        transform: scale(1.1);
+      }
+
+      .collection-info {
+        padding: 20px;
+      }
+
+      .collection-info h3 {
+        margin-bottom: 10px;
+        color: var(--dark-color);
+      }
+
+      .collection-info p {
+        margin-bottom: 15px;
+        color: #666;
+      }
+
+      .collection-price {
+        font-weight: bold;
+        color: var(--primary-color);
+        font-size: 1.2rem;
+      }
+
+      /* Products Section */
+      .products {
+        background-color: var(--light-color);
+      }
+
+      .product-categories {
+        display: flex;
+        justify-content: center;
+        flex-wrap: wrap;
+        margin-bottom: 40px;
+      }
+
+      .category-btn {
+        padding: 8px 20px;
+        margin: 5px;
+        background: var(--white-color);
+        border: 2px solid var(--primary-color);
+        color: var(--primary-color);
+        border-radius: 30px;
+        cursor: pointer;
+        transition: all 0.3s ease;
+      }
+
+      .category-btn.active,
+      .category-btn:hover {
+        background: var(--primary-color);
+        color: var(--white-color);
+      }
+
+      .products-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+        gap: 20px;
+      }
+
+      .product-item {
+        background-color: var(--white-color);
+        border-radius: 10px;
+        overflow: hidden;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        transition: all 0.3s ease;
+        position: relative;
+      }
+
+      .product-item:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+      }
+
+      .product-badge {
+        position: absolute;
+        top: 10px;
+        right: 10px;
+        background-color: var(--primary-color);
+        color: var(--white-color);
+        padding: 5px 10px;
+        border-radius: 20px;
+        font-size: 0.8rem;
+        font-weight: bold;
+      }
+
+      .product-image {
+        height: 200px;
+        overflow: hidden;
+      }
+
+      .product-image img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        transition: transform 0.5s ease;
+      }
+
+      .product-item:hover img {
+        transform: scale(1.1);
+      }
+
+      .product-info {
+        padding: 15px;
+      }
+
+      .product-info h3 {
+        font-size: 1.1rem;
+        margin-bottom: 8px;
+      }
+
+      .product-info .price {
+        display: flex;
+        align-items: center;
+        margin-bottom: 10px;
+      }
+
+      .current-price {
+        font-weight: bold;
+        color: var(--primary-color);
+        font-size: 1.2rem;
+        margin-right: 10px;
+      }
+
+      .old-price {
+        text-decoration: line-through;
+        color: #999;
+        font-size: 0.9rem;
+      }
+
+      .product-cta {
+        display: flex;
+        justify-content: space-between;
+      }
+
+      .cart-btn,
+      .wishlist-btn {
+        padding: 5px 10px;
+        border-radius: 5px;
+        font-size: 0.9rem;
+        cursor: pointer;
+        transition: all 0.3s ease;
+      }
+
+      .cart-btn {
+        background-color: var(--primary-color);
+        color: var(--white-color);
+      }
+
+      .wishlist-btn {
+        background-color: transparent;
+        border: 1px solid #ddd;
+        color: #666;
+      }
+
+      .cart-btn:hover {
+        background-color: var(--secondary-color);
+      }
+
+      .wishlist-btn:hover {
+        color: var(--primary-color);
+        border-color: var(--primary-color);
+      }
+
+      /* Offers Section */
+      .offers {
+        background: linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.8)),
+          url("https://via.placeholder.com/1920x1080") no-repeat center
+            center/cover;
+        color: var(--white-color);
+        text-align: center;
+      }
+
+      .offer-content {
+        max-width: 800px;
+        margin: 0 auto;
+      }
+
+      .offer-title {
+        color: var(--white-color);
+      }
+
+      .offer-title::after {
+        background-color: var(--white-color);
+      }
+
+      .offer-box {
+        background-color: rgba(255, 255, 255, 0.1);
+        backdrop-filter: blur(10px);
+        padding: 40px;
+        border-radius: 10px;
+        margin: 20px 0;
+      }
+
+      .offer-box h3 {
+        font-size: 2rem;
+        margin-bottom: 20px;
+        color: var(--primary-color);
+      }
+
+      .offer-box p {
+        margin-bottom: 30px;
+        font-size: 1.1rem;
+      }
+
+      .countdown {
+        display: flex;
+        justify-content: center;
+        margin: 30px 0;
+      }
+
+      .countdown-item {
+        margin: 0 10px;
+        padding: 20px;
+        background-color: rgba(0, 0, 0, 0.5);
+        border-radius: 10px;
+        min-width: 80px;
+      }
+
+      .countdown-number {
+        font-size: 2rem;
+        font-weight: bold;
+        display: block;
+      }
+
+      .countdown-label {
+        font-size: 0.9rem;
+        text-transform: uppercase;
+      }
+
+      /* Testimonials Section */
+      .testimonials {
+        background-color: var(--white-color);
+      }
+
+      .testimonials-container {
+        max-width: 800px;
+        margin: 0 auto;
+      }
+
+      .testimonial-list {
+        position: relative;
+      }
+
+      .testimonial-item {
+        background-color: var(--light-color);
+        padding: 30px;
+        border-radius: 10px;
+        margin: 20px 0;
+        text-align: center;
+        position: relative;
+      }
+
+      .testimonial-item::before {
+        content: "\201C";
+        font-family: serif;
+        position: absolute;
+        top: 10px;
+        left: 20px;
+        font-size: 5rem;
+        color: rgba(0, 0, 0, 0.1);
+      }
+
+      .testimonial-avatar {
+        width: 80px;
+        height: 80px;
+        border-radius: 50%;
+        margin: 0 auto 20px;
+        border: 5px solid var(--white-color);
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        overflow: hidden;
+      }
+
+      .testimonial-text {
+        margin-bottom: 20px;
+        font-style: italic;
+        font-size: 1.1rem;
+      }
+
+      .testimonial-author {
+        font-weight: bold;
+        color: var(--dark-color);
+        display: block;
+        margin-bottom: 5px;
+      }
+
+      .testimonial-role {
+        color: #666;
+        font-size: 0.9rem;
+      }
+
+      .testimonial-dots {
+        display: flex;
+        justify-content: center;
+        margin-top: 20px;
+      }
+
+      .dot {
+        width: 12px;
+        height: 12px;
+        background-color: #ddd;
+        border-radius: 50%;
+        margin: 0 5px;
+        cursor: pointer;
+        transition: all 0.3s ease;
+      }
+
+      .dot.active {
+        background-color: var(--primary-color);
+      }
+
+      /* Contact Section */
+      .contact {
+        background-color: var(--light-color);
+      }
+
+      .contact-container {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 40px;
+      }
+
+      .contact-info {
+        flex: 1;
+        min-width: 300px;
+      }
+
+      .contact-info h2 {
+        text-align: left;
+        margin-bottom: 30px;
+      }
+
+      .contact-info p {
+        margin-bottom: 15px;
+      }
+
+      .contact-detail {
+        display: flex;
+        align-items: center;
+        margin-bottom: 20px;
+      }
+
+      .contact-icon {
+        width: 50px;
+        height: 50px;
+        background-color: var(--primary-color);
+        color: var(--white-color);
+        border-radius: 50%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin-right: 15px;
+        font-size: 1.2rem;
+      }
+
+      .contact-text h4 {
+        margin-bottom: 5px;
+        color: var(--dark-color);
+      }
+
+      .contact-actions {
+        display: flex;
+        margin-top: 30px;
+      }
+
+      .contact-btn {
+        display: flex;
+        align-items: center;
+        margin-right: 15px;
+        padding: 10px 20px;
+        border-radius: 30px;
+        font-weight: 600;
+        transition: all 0.3s ease;
+      }
+
+      .contact-btn i {
+        margin-right: 8px;
+      }
+
+      .call-btn {
+        background-color: var(--primary-color);
+        color: var(--white-color);
+      }
+
+      .whatsapp-btn {
+        background-color: #25d366;
+        color: var(--white-color);
+      }
+
+      .contact-btn:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+      }
+
+      .contact-form {
+        flex: 1;
+        min-width: 300px;
+        background-color: var(--white-color);
+        padding: 30px;
+        border-radius: 10px;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+      }
+
+      .contact-form h3 {
+        margin-bottom: 20px;
+        color: var(--dark-color);
+      }
+
+      .form-group {
+        margin-bottom: 20px;
+      }
+
+      .form-control {
+        width: 100%;
+        padding: 12px 15px;
+        border: 1px solid #ddd;
+        border-radius: 5px;
+        font-size: 1rem;
+        transition: all 0.3s ease;
+      }
+
+      .form-control:focus {
+        border-color: var(--primary-color);
+        outline: none;
+        box-shadow: 0 0 0 3px rgba(243, 156, 18, 0.2);
+      }
+
+      textarea.form-control {
+        min-height: 120px;
+        resize: vertical;
+      }
+
+      .form-btn {
+        width: 100%;
+        padding: 12px;
+        background-color: var(--primary-color);
+        color: var(--white-color);
+        border: none;
+        border-radius: 5px;
+        font-size: 1rem;
+        font-weight: 600;
+        cursor: pointer;
+        transition: all 0.3s ease;
+      }
+
+      .form-btn:hover {
+        background-color: var(--secondary-color);
+      }
+
+      .map-container {
+        margin-top: 50px;
+        border-radius: 10px;
+        overflow: hidden;
+        height: 400px;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+      }
+
+      .map-container iframe {
+        width: 100%;
+        height: 100%;
+        border: none;
+      }
+
+      /* Footer */
+      footer {
+        background-color: var(--dark-color);
+        color: var(--light-color);
+        padding: 60px 0 0;
+      }
+
+      .footer-container {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: 30px;
+      }
+
+      .footer-section h3 {
+        color: var(--white-color);
+        margin-bottom: 20px;
+        font-size: 1.3rem;
+        position: relative;
+        padding-bottom: 10px;
+      }
+
+      .footer-section h3::after {
+        content: "";
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 50px;
+        height: 2px;
+        background-color: var(--primary-color);
+      }
+
+      .footer-about p {
+        margin-bottom: 20px;
+      }
+
+      .social-links {
+        display: flex;
+      }
+
+      .social-link {
+        width: 40px;
+        height: 40px;
+        background-color: rgba(255, 255, 255, 0.1);
+        border-radius: 50%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin-right: 10px;
+        transition: all 0.3s ease;
+      }
+
+      .social-link:hover {
+        background-color: var(--primary-color);
+        transform: translateY(-3px);
+      }
+
+      .footer-links li {
+        margin-bottom: 10px;
+      }
+
+      .footer-links a:hover {
+        color: var(--primary-color);
+        padding-left: 5px;
+      }
+
+      .footer-contact li {
+        display: flex;
+        margin-bottom: 15px;
+      }
+
+      .footer-contact-icon {
+        margin-right: 10px;
+        color: var(--primary-color);
+      }
+
+      .newsletter-form {
+        display: flex;
+      }
+
+      .newsletter-input {
+        padding: 10px;
+        border: none;
+        border-radius: 5px 0 0 5px;
+        width: 100%;
+      }
+
+      .newsletter-btn {
+        padding: 10px 15px;
+        background-color: var(--primary-color);
+        color: var(--white-color);
+        border: none;
+        border-radius: 0 5px 5px 0;
+        cursor: pointer;
+      }
+
+      .newsletter-btn:hover {
+        background-color: var(--secondary-color);
+      }
+
+      .copyright {
+        text-align: center;
+        padding: 20px 0;
+        margin-top: 40px;
+        border-top: 1px solid rgba(255, 255, 255, 0.1);
+      }
+
+      /* Back to Top Button */
+      .back-to-top {
+        position: fixed;
+        bottom: 20px;
+        right: 20px;
+        width: 50px;
+        height: 50px;
+        background-color: var(--primary-color);
+        color: var(--white-color);
+        border-radius: 50%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-size: 1.2rem;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        opacity: 0;
+        visibility: hidden;
+        transition: all 0.3s ease;
+        z-index: 99;
+      }
+
+      .back-to-top.visible {
+        opacity: 1;
+        visibility: visible;
+      }
+
+      .back-to-top:hover {
+        background-color: var(--secondary-color);
+        transform: translateY(-3px);
+      }
+
+      /* Whatsapp Floating Button */
+      .whatsapp-float {
+        position: fixed;
+        bottom: 20px;
+        left: 20px;
+        width: 60px;
+        height: A60px;
+        background-color: #25d366;
+        color: var(--white-color);
+        border-radius: 50%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-size: 1.5rem;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        z-index: 99;
+        transition: all 0.3s ease;
+      }
+
+      .whatsapp-float:hover {
+        transform: scale(1.1);
+      }
+
+      /* Animations */
+      @keyframes fadeInDown {
+        from {
+          opacity: 0;
+          transform: translateY(-50px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      @keyframes fadeInUp {
+        from {
+          opacity: 0;
+          transform: translateY(50px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      /* Media Queries */
+      @media (max-width: 992px) {
+        .section-title {
+          font-size: 2.2rem;
+        }
+
+        .hero-content h1 {
+          font-size: 3rem;
+        }
+      }
+
+      @media (max-width: 768px) {
+        nav ul {
+          position: fixed;
+          top: 70px;
+          left: -100%;
+          background-color: var(--dark-color);
+          flex-direction: column;
+          width: 100%;
+          padding: 20px 0;
+          box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+          transition: all 0.3s ease;
+        }
+
+        nav ul.show {
+          left: 0;
+        }
+
+        nav li {
+          margin: 15px 0;
+          text-align: center;
+        }
+
+        .mobile-toggle {
+          display: block;
+        }
+
+        .section-title {
+          font-size: 2rem;
+        }
+
+        .hero-content h1 {
+          font-size: 2.5rem;
+        }
+
+        .collection-grid {
+          grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+        }
+
+        .countdown-item {
+          padding: 15px 10px;
+          min-width: 60px;
+        }
+
+        .countdown-number {
+          font-size: 1.5rem;
+        }
+
+        .contact-actions {
+          flex-direction: column;
+        }
+
+        .contact-btn {
+          margin-right: 0;
+          margin-bottom: 10px;
+          justify-content: center;
+        }
+      }
+
+      @media (max-width: 576px) {
+        .section-title {
+          font-size: 1.8rem;
+        }
+
+        .hero-content h1 {
+          font-size: 2rem;
+        }
+
+        .hero-content p {
+          font-size: 1rem;
+        }
+
+        .btn {
+          padding: 10px 20px;
+          font-size: 0.9rem;
+        }
+
+        .collection-grid {
+          grid-template-columns: 1fr;
+        }
+
+        .products-grid {
+          grid-template-columns: 1fr;
+        }
+
+        .footer-container {
+          grid-template-columns: 1fr;
+        }
+      }
+    </style>
+  </head>
+
+  <body>
+    <!-- Preloader -->
+    <div id="preloader">
+      <div class="loader"></div>
+    </div>
+
+    <!-- Header & Navigation -->
+    <header id="header">
+      <div class="container nav-container">
+        <div class="logo">Soni <span>Men's Wear</span></div>
+        <div class="mobile-toggle" id="mobile-toggle">
+          <i class="fas fa-bars"></i>
+        </div>
+        <nav>
+          <ul id="nav-menu">
+            <li><a href="#hero">Home</a></li>
+            <li><a href="#about">About</a></li>
+            <li><a href="#collection">Collection</a></li>
+            <li><a href="#products">Products</a></li>
+            <li><a href="#offers">Offers</a></li>
+            <li><a href="#testimonials">Testimonials</a></li>
+            <li><a href="#contact">Contact</a></li>
+          </ul>
+        </nav>
+      </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero" id="hero">
+      <div class="hero-content">
+        <h1>Elevate Your Style with Soni Men's Wear</h1>
+        <p>
+          Explore a sophisticated selection of premium men's clothing tailored
+          for every occasion.
+        </p>
+        <a href="#collection" class="btn hero-btn">Shop Now</a>
+      </div>
+    </section>
+
+    <!-- About Us -->
+    <section class="about" id="about">
+      <div class="container">
+        <h2 class="section-title">About Us</h2>
+        <div class="about-content">
+          <div class="about-text">
+            <p>
+              Soni Men's Wear is your ultimate destination for premium men's
+              clothing in Deoria. We specialize in offering a wide range of
+              stylish and high-quality apparel for men of all sizes and tastes.
+            </p>
+            <p>
+              With over 15 years of experience in the fashion industry, we
+              understand what it takes to make a gentleman look his best. Our
+              curated collection features the latest trends as well as timeless
+              classics.
+            </p>
+            <div class="about-features">
+              <div class="feature-item">
+                <div class="feature-icon">
+                  <i class="fas fa-check-circle"></i>
+                </div>
+                <div>
+                  Exclusive Men's Collection: From traditional to modern styles.
+                </div>
+              </div>
+              <div class="feature-item">
+                <div class="feature-icon">
+                  <i class="fas fa-check-circle"></i>
+                </div>
+                <div>All Sizes Available: Perfect fits for everyone.</div>
+              </div>
+              <div class="feature-item">
+                <div class="feature-icon">
+                  <i class="fas fa-check-circle"></i>
+                </div>
+                <div>Quality & Style: Comfort meets fashion.</div>
+              </div>
+              <div class="feature-item">
+                <div class="feature-icon">
+                  <i class="fas fa-check-circle"></i>
+                </div>
+                <div>
+                  Affordable Prices: Trendy fashion without breaking the bank.
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="about-image">
+            <img
+              src="https://via.placeholder.com/600x400"
+              alt="Soni Men's Wear Store"
+            />
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Exclusive Collection -->
+    <section class="collection" id="collection">
+      <div class="container">
+        <h2 class="section-title">Exclusive Collection</h2>
+        <div class="collection-grid">
+          <div class="collection-item">
+            <div class="collection-image">
+              <img
+                src="https://via.placeholder.com/400x300"
+                alt="Formal Attire"
+              />
+            </div>
+            <div class="collection-info">
+              <h3>Tailored Formal Attire</h3>
+              <p>
+                Designed for the discerning gentleman, offering sophistication
+                and comfort.
+              </p>
+              <span class="collection-price">From ₹1,999</span>
+            </div>
+          </div>
+          <div class="collection-item">
+            <div class="collection-image">
+              <img
+                src="https://via.placeholder.com/400x300"
+                alt="Casual Polos"
+              />
+            </div>
+            <div class="collection-info">
+              <h3>Versatile Casual Polos</h3>
+              <p>Effortlessly stylish, perfect for any occasion.</p>
+              <span class="collection-price">From ₹799</span>
+            </div>
+          </div>
+          <div class="collection-item">
+            <div class="collection-image">
+              <img
+                src="https://via.placeholder.com/400x300"
+                alt="Fashion Jackets"
+              />
+            </div>
+            <div class="collection-info">
+              <h3>Fashion-Forward Jackets</h3>
+              <p>On-trend styles that keep you warm and stylish.</p>
+              <span class="collection-price">From ₹2,499</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Products Section -->
+    <section class="products" id="products">
+      <div class="container">
+        <h2 class="section-title">Our Products</h2>
+        <div class="product-categories">
+          <button class="category-btn active">All</button>
+          <button class="category-btn">Formal</button>
+          <button class="category-btn">Casual</button>
+          <button class="category-btn">Festive</button>
+          <button class="category-btn">Accessories</button>
+        </div>
+        <div class="products-grid">
+          <div class="product-item">
+            <span class="product-badge">New</span>
+            <div class="product-image">
+              <img src="https://via.placeholder.com/300x300" alt="Product 1" />
+            </div>
+            <div class="product-info">
+              <h3>Premium Formal Shirt</h3>
+              <div class="price">
+                <span class="current-price">₹1,299</span>
+                <span class="old-price">₹1,599</span>
+              </div>
+              <div class="product-cta">
+                <!-- <button class="cart-btn">Add to Cart</button> -->
+                <button class="wishlist-btn">
+                  <i class="far fa-heart"></i>
+                </button>
+              </div>
+            </div>
+          </div>
+          <div class="product-item">
+            <div class="product-image">
+              <img src="https://via.placeholder.com/300x300" alt="Product 2" />
+            </div>
+            <div class="product-info">
+              <h3>Casual Cotton T-Shirt</h3>
+              <div class="price">
+                <span class="current-price">₹699</span>
+                <span class="old-price">₹899</span>
+              </div>
+              <div class="product-cta">
+                <!-- <button class="cart-btn">Add to Cart</button> -->
+                <button class="wishlist-btn">
+                  <i class="far fa-heart"></i>
+                </button>
+              </div>
+            </div>
+          </div>
+          <div class="product-item">
+            <span class="product-badge">Sale</span>
+            <div class="product-image">
+              <img src="https://via.placeholder.com/300x300" alt="Product 3" />
+            </div>
+            <div class="product-info">
+              <h3>Slim Fit Jeans</h3>
+              <div class="price">
+                <span class="current-price">₹1,499</span>
+                <span class="old-price">₹1,999</span>
+              </div>
+              <div class="product-cta">
+                <!-- <button class="cart-btn">Add to Cart</button> -->
+                <button class="wishlist-btn">
+                  <i class="far fa-heart"></i>
+                </button>
+              </div>
+            </div>
+          </div>
+          <div class="product-item">
+            <div class="product-image">
+              <img src="https://via.placeholder.com/300x300" alt="Product 4" />
+            </div>
+            <div class="product-info">
+              <h3>Designer Blazer</h3>
+              <div class="price">
+                <span class="current-price">₹3,999</span>
+                <span class="old-price">₹4,999</span>
+              </div>
+              <div class="product-cta">
+                <!-- <button class="cart-btn">Add to Cart</button> -->
+                <button class="wishlist-btn">
+                  <i class="far fa-heart"></i>
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Special Offers -->
+    <section class="offers" id="offers">
+      <div class="container">
+        <h2 class="section-title offer-title">Special Offers</h2>
+        <div class="offer-content">
+          <div class="offer-box">
+            <h3>End of Season SALE</h3>
+            <p>Grab up to 50% off on premium men's wear. Limited time offer!</p>
+            <div class="countdown">
+              <div class="countdown-item">
+                <span class="countdown-number" id="days">00</span>
+                <span class="countdown-label">Days</span>
+              </div>
+              <div class="countdown-item">
+                <span class="countdown-number" id="hours">00</span>
+                <span class="countdown-label">Hours</span>
+              </div>
+              <div class="countdown-item">
+                <span class="countdown-number" id="minutes">00</span>
+                <span class="countdown-label">Minutes</span>
+              </div>
+              <div class="countdown-item">
+                <span class="countdown-number" id="seconds">00</span>
+                <span class="countdown-label">Seconds</span>
+              </div>
+            </div>
+            <a href="#collection" class="btn">Shop Now</a>
+          </div>
+          <p>
+            Join our membership program and enjoy exclusive discounts and
+            promotions all year round.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Testimonials -->
+    <section class="testimonials" id="testimonials">
+      <div class="container">
+        <h2 class="section-title">What Our Customers Say</h2>
+        <div class="testimonials-container">
+          <div class="testimonial-list">
+            <div class="testimonial-item active">
+              <div class="testimonial-avatar">
+                <img src="https://via.placeholder.com/150" alt="Customer 1" />
+              </div>
+              <p class="testimonial-text">
+                "Soni Men's Wear always has the best collection! Quality and
+                style at great prices! I've been shopping here for years and
+                have never been disappointed."
+              </p>
+              <span class="testimonial-author">Rohan Sharma</span>
+              <span class="testimonial-role">Marketing Executive</span>
+            </div>
+            <div class="testimonial-item">
+              <div class="testimonial-avatar">
+                <img src="https://via.placeholder.com/150" alt="Customer 2" />
+              </div>
+              <p class="testimonial-text">
+                "The perfect place to find formal and casual wear. The staff is
+                incredibly helpful and the quality of clothes is exceptional.
+                Highly recommend!"
+              </p>
+              <span class="testimonial-author">Amit Patel</span>
+              <span class="testimonial-role">Software Engineer</span>
+            </div>
+            <div class="testimonial-item">
+              <div class="testimonial-avatar">
+                <img src="https://via.placeholder.com/150" alt="Customer 3" />
+              </div>
+              <p class="testimonial-text">
+                "I shopped at Soni Men's Wear for my wedding and they provided
+                the best traditional and western outfits. Excellent customer
+                service and attention to detail!"
+              </p>
+              <span class="testimonial-author">Vijay Singh</span>
+              <span class="testimonial-role">Bank Manager</span>
+            </div>
+          </div>
+          <div class="testimonial-dots">
+            <span class="dot active"></span>
+            <span class="dot"></span>
+            <span class="dot"></span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Contact Us -->
+    <section class="contact" id="contact">
+      <div class="container">
+        <h2 class="section-title">Contact Us</h2>
+        <div class="contact-container">
+          <div class="contact-info">
+            <p>
+              We'd love to hear from you! Visit our store or get in touch with
+              us through any of the following channels:
+            </p>
+            <div class="contact-detail">
+              <div class="contact-icon">
+                <i class="fas fa-map-marker-alt"></i>
+              </div>
+              <div class="contact-text">
+                <h4>Our Location</h4>
+                <p>📍 Tahsil Road, Near Central Police Chauki, Deoria</p>
+              </div>
+            </div>
+            <div class="contact-detail">
+              <div class="contact-icon">
+                <i class="fas fa-phone-alt"></i>
+              </div>
+              <div class="contact-text">
+                <h4>Phone Number</h4>
+                <p>Shravan Soni – <a href="tel:9450282832">9450282832</a></p>
+                <p>Manas Soni – <a href="tel:8604008845">8604008845</a></p>
+              </div>
+            </div>
+            <div class="contact-detail">
+              <div class="contact-icon">
+                <i class="fas fa-clock"></i>
+              </div>
+              <div class="contact-text">
+                <h4>Business Hours</h4>
+                <p>Monday - Saturday: 10:00 AM - 8:00 PM</p>
+                <p>Sunday: 11:00 AM - 6:00 PM</p>
+              </div>
+            </div>
+            <div class="contact-actions">
+              <a href="tel:9450282832" class="contact-btn call-btn">
+                <i class="fas fa-phone-alt"></i> Call Now
+              </a>
+              <a
+                href="https://wa.me/919450282832"
+                class="contact-btn whatsapp-btn"
+              >
+                <i class="fab fa-whatsapp"></i> WhatsApp
+              </a>
+            </div>
+          </div>
+          <div class="contact-form">
+            <h3>Send a Message</h3>
+            <form id="contactForm">
+              <div class="form-group">
+                <input
+                  type="text"
+                  class="form-control"
+                  placeholder="Your Name"
+                  required
+                />
+              </div>
+              <div class="form-group">
+                <input
+                  type="email"
+                  class="form-control"
+                  placeholder="Your Email"
+                  required
+                />
+              </div>
+              <div class="form-group">
+                <input
+                  type="tel"
+                  class="form-control"
+                  placeholder="Phone Number"
+                  required
+                />
+              </div>
+              <div class="form-group">
+                <textarea
+                  class="form-control"
+                  placeholder="Your Message"
+                  required
+                ></textarea>
+              </div>
+              <button type="submit" class="form-btn">Send Message</button>
+            </form>
+          </div>
+        </div>
+        <div class="map-container">
+          <iframe
+            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d14210.340896404044!2d83.77920801553802!3d26.50271889052403!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x399145235877e0c7%3A0x8d7211aaae0d6523!2sDeoria%2C%20Uttar%20Pradesh!5e0!3m2!1sen!2sin!4v1614257457910!5m2!1sen!2sin"
+            allowfullscreen=""
+            loading="lazy"
+          ></iframe>
+        </div>
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+      <div class="container">
+        <div class="footer-container">
+          <div class="footer-section footer-about">
+            <h3>About Soni Men's Wear</h3>
+            <p>
+              Your ultimate destination for premium men's clothing in Deoria. We
+              offer a wide range of stylish and high-quality apparel for men of
+              all sizes and tastes.
+            </p>
+            <div class="social-links">
+              <a href="#" class="social-link"
+                ><i class="fab fa-facebook-f"></i
+              ></a>
+              <a href="#" class="social-link"
+                ><i class="fab fa-instagram"></i
+              ></a>
+              <a href="#" class="social-link"><i class="fab fa-twitter"></i></a>
+              <a href="#" class="social-link"><i class="fab fa-youtube"></i></a>
+            </div>
+          </div>
+          <div class="footer-section footer-links">
+            <h3>Quick Links</h3>
+            <ul>
+              <li><a href="#hero">Home</a></li>
+              <li><a href="#about">About Us</a></li>
+              <li><a href="#collection">Collection</a></li>
+              <li><a href="#products">Products</a></li>
+              <li><a href="#offers">Special Offers</a></li>
+              <li><a href="#testimonials">Testimonials</a></li>
+              <li><a href="#contact">Contact Us</a></li>
+            </ul>
+          </div>
+          <div class="footer-section footer-contact">
+            <h3>Contact Information</h3>
+            <ul>
+              <li>
+                <span class="footer-contact-icon"
+                  ><i class="fas fa-map-marker-alt"></i
+                ></span>
+                <span>Tahsil Road, Near Central Police Chauki, Deoria</span>
+              </li>
+              <li>
+                <span class="footer-contact-icon"
+                  ><i class="fas fa-phone-alt"></i
+                ></span>
+                <span
+                  ><a href="tel:9450282832">9450282832</a>,
+                  <a href="tel:8604008845">8604008845</a></span
+                >
+              </li>
+              <li>
+                <span class="footer-contact-icon"
+                  ><i class="fas fa-envelope"></i
+                ></span>
+                <span
+                  ><a href="mailto:contact@sonimenswear.com"
+                    >contact@sonimenswear.com</a
+                  ></span
+                >
+              </li>
+              <li>
+                <span class="footer-contact-icon"
+                  ><i class="fas fa-clock"></i
+                ></span>
+                <span>Monday - Saturday: 10:00 AM - 8:00 PM</span>
+              </li>
+            </ul>
+          </div>
+          <div class="footer-section footer-newsletter">
+            <h3>Newsletter</h3>
+            <p>
+              Subscribe to receive updates on new arrivals and special offers.
+            </p>
+            <form class="newsletter-form">
+              <input
+                type="email"
+                class="newsletter-input"
+                placeholder="Your Email Address"
+                required
+              />
+              <button type="submit" class="newsletter-btn">
+                <i class="fas fa-paper-plane"></i>
+              </button>
+            </form>
+          </div>
+        </div>
+        <div class="copyright">
+          <p>
+            &copy; 2025 Soni Men's Wear. All Rights Reserved. Dress Your Best
+            with Soni Men's Wear!
+          </p>
+        </div>
+      </div>
+    </footer>
+
+    <!-- Back to Top Button -->
+    <a href="#" class="back-to-top" id="backToTop">
+      <i class="fas fa-arrow-up"></i>
+    </a>
+
+    <!-- WhatsApp Floating Button -->
+    <a href="https://wa.me/919450282832" class="whatsapp-float">
+      <i class="fab fa-whatsapp"></i>
+    </a>
+
+    <!-- JavaScript -->
+    <script>
+      // Mobile Menu Toggle
+      const mobileToggle = document.getElementById("mobile-toggle");
+      const navMenu = document.getElementById("nav-menu");
+
+      mobileToggle.addEventListener("click", () => {
+        navMenu.classList.toggle("show");
+        mobileToggle.querySelector("i").classList.toggle("fa-bars");
+        mobileToggle.querySelector("i").classList.toggle("fa-times");
+      });
+
+      // Close mobile menu when clicking a nav link
+      document.querySelectorAll("#nav-menu a").forEach((link) => {
+        link.addEventListener("click", () => {
+          navMenu.classList.remove("show");
+          mobileToggle.querySelector("i").classList.add("fa-bars");
+          mobileToggle.querySelector("i").classList.remove("fa-times");
+        });
+      });
+
+      // Header scroll effect
+      window.addEventListener("scroll", () => {
+        const header = document.getElementById("header");
+        const backToTop = document.getElementById("backToTop");
+
+        if (window.scrollY > 100) {
+          header.classList.add("scrolled");
+          backToTop.classList.add("visible");
+        } else {
+          header.classList.remove("scrolled");
+          backToTop.classList.remove("visible");
+        }
+      });
+
+      // Smooth scroll for nav links
+      document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
+        anchor.addEventListener("click", function (e) {
+          e.preventDefault();
+          const target = document.querySelector(this.getAttribute("href"));
+          if (target) {
+            window.scrollTo({
+              top: target.offsetTop - 70,
+              behavior: "smooth",
+            });
+          }
+        });
+      });
+
+      // Testimonial slider
+      const testimonialDots = document.querySelectorAll(".dot");
+      const testimonialItems = document.querySelectorAll(".testimonial-item");
+
+      testimonialDots.forEach((dot, index) => {
+        dot.addEventListener("click", () => {
+          // Remove active class from all dots and items
+          testimonialDots.forEach((d) => d.classList.remove("active"));
+          testimonialItems.forEach((item) => item.classList.remove("active"));
+
+          // Add active class to current dot and item
+          dot.classList.add("active");
+          testimonialItems[index].classList.add("active");
+        });
+      });
+
+      // Auto testimonial slider
+      let currentTestimonial = 0;
+      const testimonialAutoSlide = () => {
+        testimonialDots.forEach((d) => d.classList.remove("active"));
+        testimonialItems.forEach((item) => item.classList.remove("active"));
+
+        currentTestimonial = (currentTestimonial + 1) % testimonialItems.length;
+
+        testimonialDots[currentTestimonial].classList.add("active");
+        testimonialItems[currentTestimonial].classList.add("active");
+      };
+
+      // Change testimonial every 5 seconds
+      setInterval(testimonialAutoSlide, 5000);
+
+      // Product category filter
+      const categoryBtns = document.querySelectorAll(".category-btn");
+
+      categoryBtns.forEach((btn) => {
+        btn.addEventListener("click", () => {
+          // Remove active class from all buttons
+          categoryBtns.forEach((b) => b.classList.remove("active"));
+
+          // Add active class to clicked button
+          btn.classList.add("active");
+
+          // Here you would normally filter products based on category
+          // For demo purposes, we're just changing the active state
+        });
+      });
+
+      // Countdown timer for special offer
+      const countDownDate = new Date();
+      countDownDate.setDate(countDownDate.getDate() + 7); // 7 days from now
+
+      const countdownFunction = () => {
+        const now = new Date().getTime();
+        const distance = countDownDate - now;
+
+        const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+        const hours = Math.floor(
+          (distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)
+        );
+        const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+        const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+        document.getElementById("days").innerHTML = days
+          .toString()
+          .padStart(2, "0");
+        document.getElementById("hours").innerHTML = hours
+          .toString()
+          .padStart(2, "0");
+        document.getElementById("minutes").innerHTML = minutes
+          .toString()
+          .padStart(2, "0");
+        document.getElementById("seconds").innerHTML = seconds
+          .toString()
+          .padStart(2, "0");
+      };
+
+      // Update countdown every second
+      setInterval(countdownFunction, 1000);
+      countdownFunction(); // Initial call
+
+      // Contact Form Submission
+      const contactForm = document.getElementById("contactForm");
+      if (contactForm) {
+        contactForm.addEventListener("submit", function (e) {
+          e.preventDefault();
+          // Here you would normally handle form submission
+          alert("Thank you for your message! We will get back to you soon.");
+          this.reset();
+        });
+      }
+
+      // Newsletter Form Submission
+      const newsletterForm = document.querySelector(".newsletter-form");
+      if (newsletterForm) {
+        newsletterForm.addEventListener("submit", function (e) {
+          e.preventDefault();
+          // Here you would normally handle newsletter subscription
+          alert("Thank you for subscribing to our newsletter!");
+          this.reset();
+        });
+      }
+
+      // Preloader
+      window.addEventListener("load", () => {
+        const preloader = document.getElementById("preloader");
+        setTimeout(() => {
+          preloader.style.display = "none";
+        }, 500);
+      });
+    </script>
+  </body>
+</html>
