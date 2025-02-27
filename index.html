@@ -4,41 +4,53 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Soni Men's Wear | Dress Your Best</title>
+    <!-- Font Awesome for icons -->
     <link
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
     />
+    <!-- AOS Animation Library -->
+    <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
     <style>
       /* General Styles */
       * {
         margin: 0;
         padding: 0;
         box-sizing: border-box;
-        font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+        font-family: "Poppins", "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
       }
 
       :root {
-        --primary-color: #f39c12;
-        --secondary-color: #e67e22;
+        --primary-color: #e74c3c;
+        --secondary-color: #c0392b;
+        --accent-color: #f39c12;
         --dark-color: #2c3e50;
         --light-color: #ecf0f1;
         --text-color: #333;
         --white-color: #fff;
+        --gray-color: #95a5a6;
+        --transition-fast: 0.3s ease;
+        --transition-medium: 0.5s ease;
+        --transition-slow: 0.8s ease;
       }
+
+      @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap");
 
       html {
         scroll-behavior: smooth;
+        scroll-padding-top: 70px;
       }
 
       body {
         line-height: 1.6;
         color: var(--text-color);
+        overflow-x: hidden;
       }
 
       a {
         text-decoration: none;
         color: inherit;
-        transition: all 0.3s ease;
+        transition: all var(--transition-fast);
       }
 
       ul {
@@ -48,6 +60,7 @@
       img {
         max-width: 100%;
         height: auto;
+        display: block;
       }
 
       .container {
@@ -59,6 +72,8 @@
 
       section {
         padding: 80px 0;
+        position: relative;
+        overflow: hidden;
       }
 
       .section-title {
@@ -67,6 +82,7 @@
         text-align: center;
         position: relative;
         color: var(--dark-color);
+        font-weight: 700;
       }
 
       .section-title::after {
@@ -80,6 +96,15 @@
         background-color: var(--primary-color);
       }
 
+      .section-subtitle {
+        text-align: center;
+        color: var(--gray-color);
+        margin-bottom: 40px;
+        max-width: 700px;
+        margin-left: auto;
+        margin-right: auto;
+      }
+
       .btn {
         display: inline-block;
         background: var(--primary-color);
@@ -88,13 +113,78 @@
         border-radius: 30px;
         font-size: 1rem;
         font-weight: 600;
-        box-shadow: 0 4px 15px rgba(243, 156, 18, 0.3);
-        transition: all 0.3s ease;
+        box-shadow: 0 4px 15px rgba(231, 76, 60, 0.3);
+        transition: all var(--transition-fast);
+        border: none;
+        cursor: pointer;
+        position: relative;
+        overflow: hidden;
+        z-index: 1;
+      }
+
+      .btn::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 0%;
+        height: 100%;
+        background: var(--secondary-color);
+        transition: all 0.4s cubic-bezier(0.42, 0, 0.58, 1);
+        z-index: -1;
+      }
+
+      .btn:hover::before {
+        width: 100%;
       }
 
       .btn:hover {
-        background: var(--secondary-color);
         transform: translateY(-3px);
+        box-shadow: 0 8px 20px rgba(231, 76, 60, 0.4);
+      }
+
+      .btn-outline {
+        background: transparent;
+        border: 2px solid var(--primary-color);
+        color: var(--primary-color);
+      }
+
+      .btn-outline:hover {
+        background: var(--primary-color);
+        color: var(--white-color);
+      }
+
+      .text-center {
+        text-align: center;
+      }
+
+      /* Preloader */
+      #preloader {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: var(--white-color);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        z-index: 9999;
+      }
+
+      .loader {
+        width: 50px;
+        height: 50px;
+        border: 5px solid var(--light-color);
+        border-radius: 50%;
+        border-top-color: var(--primary-color);
+        animation: spin 1s linear infinite;
+      }
+
+      @keyframes spin {
+        100% {
+          transform: rotate(360deg);
+        }
       }
 
       /* Header & Navigation */
@@ -107,12 +197,12 @@
         top: 0;
         z-index: 1000;
         box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-        transition: all 0.3s ease;
+        transition: all var(--transition-fast);
       }
 
       header.scrolled {
         padding: 10px 0;
-        background: rgba(44, 62, 80, 0.9);
+        background: rgba(44, 62, 80, 0.95);
         backdrop-filter: blur(10px);
       }
 
@@ -126,10 +216,24 @@
         font-size: 1.8rem;
         font-weight: bold;
         letter-spacing: 1px;
+        position: relative;
+        display: inline-block;
       }
 
       .logo span {
         color: var(--primary-color);
+        position: relative;
+      }
+
+      .logo span::after {
+        content: "";
+        position: absolute;
+        width: 6px;
+        height: 6px;
+        background: var(--accent-color);
+        border-radius: 50%;
+        bottom: 5px;
+        right: -8px;
       }
 
       nav ul {
@@ -143,17 +247,18 @@
       nav a {
         font-weight: 500;
         position: relative;
+        padding: 5px 0;
       }
 
       nav a::after {
         content: "";
         position: absolute;
-        bottom: -5px;
+        bottom: 0;
         left: 0;
         width: 0;
         height: 2px;
         background-color: var(--primary-color);
-        transition: width 0.3s ease;
+        transition: width var(--transition-fast);
       }
 
       nav a:hover::after {
@@ -168,13 +273,18 @@
         display: none;
         font-size: 1.5rem;
         cursor: pointer;
+        transition: all var(--transition-fast);
+      }
+
+      .mobile-toggle:hover {
+        color: var(--primary-color);
       }
 
       /* Hero Section */
       .hero {
-        background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)),
-          url("https://via.placeholder.com/1920x1080") no-repeat center
-            center/cover;
+        background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)),
+          url("https://images.unsplash.com/photo-1441984904996-e0b6ba687e04?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1920&q=80")
+            no-repeat center center/cover;
         height: 100vh;
         display: flex;
         justify-content: center;
@@ -182,32 +292,92 @@
         color: var(--white-color);
         text-align: center;
         padding-top: 80px;
+        position: relative;
+      }
+
+      .hero::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(
+          45deg,
+          rgba(231, 76, 60, 0.3),
+          rgba(41, 128, 185, 0.3)
+        );
       }
 
       .hero-content {
         max-width: 800px;
         padding: 0 20px;
+        position: relative;
+        z-index: 1;
       }
 
       .hero-content h1 {
         font-size: 3.5rem;
         margin-bottom: 20px;
-        animation: fadeInDown 1s ease;
+        line-height: 1.2;
+        text-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
       }
 
       .hero-content p {
         font-size: 1.2rem;
         margin-bottom: 30px;
-        animation: fadeInUp 1s ease;
+        max-width: 600px;
+        margin-left: auto;
+        margin-right: auto;
       }
 
       .hero-btn {
-        animation: fadeInUp 1.2s ease;
+        margin-top: 20px;
+      }
+
+      .hero-scroll {
+        position: absolute;
+        bottom: 30px;
+        left: 50%;
+        transform: translateX(-50%);
+        animation: bounce 2s infinite;
+        color: var(--white-color);
+        font-size: 2rem;
+        cursor: pointer;
+      }
+
+      @keyframes bounce {
+        0%,
+        20%,
+        50%,
+        80%,
+        100% {
+          transform: translateY(0) translateX(-50%);
+        }
+        40% {
+          transform: translateY(-20px) translateX(-50%);
+        }
+        60% {
+          transform: translateY(-10px) translateX(-50%);
+        }
       }
 
       /* About Section */
       .about {
-        background-color: var(--light-color);
+        background-color: var(--white-color);
+        position: relative;
+      }
+
+      .about::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        right: 0;
+        width: 300px;
+        height: 300px;
+        background: rgba(231, 76, 60, 0.05);
+        border-radius: 50%;
+        z-index: 0;
       }
 
       .about-content {
@@ -215,6 +385,8 @@
         flex-wrap: wrap;
         align-items: center;
         gap: 40px;
+        position: relative;
+        z-index: 1;
       }
 
       .about-text {
@@ -225,11 +397,18 @@
       .about-text h2 {
         text-align: left;
         margin-bottom: 20px;
+        font-size: 2.2rem;
+      }
+
+      .about-text h2::after {
+        left: 0;
+        transform: none;
       }
 
       .about-text p {
         margin-bottom: 20px;
         font-size: 1.1rem;
+        color: #555;
       }
 
       .about-features {
@@ -238,54 +417,141 @@
 
       .feature-item {
         display: flex;
-        align-items: center;
-        margin-bottom: 15px;
+        align-items: flex-start;
+        margin-bottom: 20px;
+        transition: all var(--transition-fast);
+        padding: 15px;
+        border-radius: 8px;
+      }
+
+      .feature-item:hover {
+        background: rgba(231, 76, 60, 0.05);
+        transform: translateX(5px);
       }
 
       .feature-icon {
         color: var(--primary-color);
         margin-right: 15px;
         font-size: 1.2rem;
+        background: rgba(231, 76, 60, 0.1);
+        width: 40px;
+        height: 40px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 50%;
+        flex-shrink: 0;
+      }
+
+      .feature-text h4 {
+        margin-bottom: 5px;
+        color: var(--dark-color);
       }
 
       .about-image {
         flex: 1;
         min-width: 300px;
-        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
         border-radius: 10px;
         overflow: hidden;
+        position: relative;
+      }
+
+      .about-image::before {
+        content: "";
+        position: absolute;
+        top: 20px;
+        left: 20px;
+        right: 20px;
+        bottom: 20px;
+        border: 2px solid var(--primary-color);
+        border-radius: 10px;
+        z-index: -1;
+        opacity: 0.5;
+      }
+
+      .about-image img {
+        transition: transform var(--transition-medium);
+        width: 100%;
+      }
+
+      .about-image:hover img {
+        transform: scale(1.05);
       }
 
       /* Collection Section */
+      .collection {
+        background-color: var(--light-color);
+        position: relative;
+        overflow: hidden;
+      }
+
+      .collection::after {
+        content: "";
+        position: absolute;
+        bottom: -150px;
+        left: -150px;
+        width: 300px;
+        height: 300px;
+        background: rgba(231, 76, 60, 0.05);
+        border-radius: 50%;
+        z-index: 0;
+      }
+
       .collection-grid {
         display: grid;
         grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
         gap: 30px;
+        position: relative;
+        z-index: 1;
       }
 
       .collection-item {
         background-color: var(--white-color);
         border-radius: 10px;
         overflow: hidden;
-        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-        transition: all 0.3s ease;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+        transition: all var(--transition-medium);
+        position: relative;
       }
 
       .collection-item:hover {
         transform: translateY(-10px);
-        box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
+        box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
       }
 
       .collection-image {
-        height: 250px;
+        height: 300px;
         overflow: hidden;
+        position: relative;
+      }
+
+      .collection-image::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(
+          to bottom,
+          transparent 50%,
+          rgba(0, 0, 0, 0.7) 100%
+        );
+        z-index: 1;
+        opacity: 0;
+        transition: opacity var(--transition-medium);
+      }
+
+      .collection-item:hover .collection-image::before {
+        opacity: 1;
       }
 
       .collection-image img {
         width: 100%;
         height: 100%;
         object-fit: cover;
-        transition: transform 0.5s ease;
+        transition: transform var(--transition-medium);
       }
 
       .collection-item:hover img {
@@ -293,28 +559,88 @@
       }
 
       .collection-info {
-        padding: 20px;
+        padding: 25px;
+        position: relative;
+      }
+
+      .collection-info::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 25px;
+        width: 30px;
+        height: 3px;
+        background: var(--primary-color);
+        transform: translateY(-50%);
       }
 
       .collection-info h3 {
         margin-bottom: 10px;
         color: var(--dark-color);
+        font-size: 1.3rem;
+        font-weight: 600;
       }
 
       .collection-info p {
         margin-bottom: 15px;
         color: #666;
+        font-size: 0.95rem;
       }
 
       .collection-price {
         font-weight: bold;
         color: var(--primary-color);
         font-size: 1.2rem;
+        display: block;
+        margin-bottom: 15px;
+      }
+
+      .collection-btn {
+        display: inline-block;
+        padding: 8px 20px;
+        background: transparent;
+        border: 1px solid var(--primary-color);
+        color: var(--primary-color);
+        border-radius: 30px;
+        font-size: 0.9rem;
+        font-weight: 500;
+        transition: all var(--transition-fast);
+      }
+
+      .collection-btn:hover {
+        background: var(--primary-color);
+        color: var(--white-color);
+      }
+
+      .collection-tag {
+        position: absolute;
+        top: 15px;
+        right: 15px;
+        background: var(--primary-color);
+        color: var(--white-color);
+        padding: 5px 15px;
+        border-radius: 30px;
+        font-size: 0.8rem;
+        font-weight: 500;
+        z-index: 2;
+        box-shadow: 0 5px 15px rgba(231, 76, 60, 0.3);
       }
 
       /* Products Section */
       .products {
-        background-color: var(--light-color);
+        background-color: var(--white-color);
+        position: relative;
+      }
+
+      .products::before {
+        content: "";
+        position: absolute;
+        top: -100px;
+        right: -100px;
+        width: 200px;
+        height: 200px;
+        background: rgba(231, 76, 60, 0.05);
+        border-radius: 50%;
       }
 
       .product-categories {
@@ -322,6 +648,8 @@
         justify-content: center;
         flex-wrap: wrap;
         margin-bottom: 40px;
+        position: relative;
+        z-index: 1;
       }
 
       .category-btn {
@@ -332,57 +660,86 @@
         color: var(--primary-color);
         border-radius: 30px;
         cursor: pointer;
-        transition: all 0.3s ease;
+        transition: all var(--transition-fast);
+        font-weight: 500;
       }
 
       .category-btn.active,
       .category-btn:hover {
         background: var(--primary-color);
         color: var(--white-color);
+        transform: translateY(-3px);
+        box-shadow: 0 5px 15px rgba(231, 76, 60, 0.2);
       }
 
       .products-grid {
         display: grid;
         grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-        gap: 20px;
+        gap: 25px;
+        position: relative;
+        z-index: 1;
       }
 
       .product-item {
         background-color: var(--white-color);
         border-radius: 10px;
         overflow: hidden;
-        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-        transition: all 0.3s ease;
+        box-shadow: 0 10px 20px rgba(0, 0, 0, 0.05);
+        transition: all var(--transition-medium);
         position: relative;
       }
 
       .product-item:hover {
-        transform: translateY(-5px);
-        box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+        transform: translateY(-8px);
+        box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
       }
 
       .product-badge {
         position: absolute;
-        top: 10px;
-        right: 10px;
+        top: 15px;
+        right: 15px;
         background-color: var(--primary-color);
         color: var(--white-color);
-        padding: 5px 10px;
+        padding: 5px 12px;
         border-radius: 20px;
         font-size: 0.8rem;
-        font-weight: bold;
+        font-weight: 600;
+        z-index: 2;
+        box-shadow: 0 5px 10px rgba(231, 76, 60, 0.2);
       }
 
       .product-image {
-        height: 200px;
+        height: 220px;
         overflow: hidden;
+        position: relative;
+      }
+
+      .product-image::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(
+          to bottom,
+          transparent 70%,
+          rgba(0, 0, 0, 0.5) 100%
+        );
+        z-index: 1;
+        opacity: 0;
+        transition: opacity var(--transition-medium);
+      }
+
+      .product-item:hover .product-image::before {
+        opacity: 1;
       }
 
       .product-image img {
         width: 100%;
         height: 100%;
         object-fit: cover;
-        transition: transform 0.5s ease;
+        transition: transform var(--transition-medium);
       }
 
       .product-item:hover img {
@@ -390,18 +747,21 @@
       }
 
       .product-info {
-        padding: 15px;
+        padding: 20px;
+        position: relative;
       }
 
       .product-info h3 {
         font-size: 1.1rem;
-        margin-bottom: 8px;
+        margin-bottom: 10px;
+        font-weight: 600;
+        color: var(--dark-color);
       }
 
       .product-info .price {
         display: flex;
         align-items: center;
-        margin-bottom: 10px;
+        margin-bottom: 15px;
       }
 
       .current-price {
@@ -420,26 +780,41 @@
       .product-cta {
         display: flex;
         justify-content: space-between;
+        align-items: center;
       }
 
       .cart-btn,
       .wishlist-btn {
-        padding: 5px 10px;
+        padding: 8px 15px;
         border-radius: 5px;
         font-size: 0.9rem;
         cursor: pointer;
-        transition: all 0.3s ease;
+        transition: all var(--transition-fast);
+        display: flex;
+        align-items: center;
+        gap: 5px;
       }
 
       .cart-btn {
         background-color: var(--primary-color);
         color: var(--white-color);
+        border: none;
+        flex-grow: 1;
+        justify-content: center;
       }
 
       .wishlist-btn {
         background-color: transparent;
         border: 1px solid #ddd;
         color: #666;
+        width: 40px;
+        height: 40px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 0;
+        border-radius: 50%;
+        margin-left: 10px;
       }
 
       .cart-btn:hover {
@@ -449,20 +824,49 @@
       .wishlist-btn:hover {
         color: var(--primary-color);
         border-color: var(--primary-color);
+        transform: scale(1.1);
+      }
+
+      .product-rating {
+        display: flex;
+        margin-bottom: 10px;
+        color: var(--accent-color);
+        font-size: 0.9rem;
+      }
+
+      .product-rating i {
+        margin-right: 2px;
       }
 
       /* Offers Section */
       .offers {
         background: linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.8)),
-          url("https://via.placeholder.com/1920x1080") no-repeat center
-            center/cover;
+          url("https://images.unsplash.com/photo-1490114538077-0a7f8cb49891?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1920&q=80")
+            no-repeat center center/cover;
         color: var(--white-color);
         text-align: center;
+        position: relative;
+      }
+
+      .offers::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(
+          45deg,
+          rgba(231, 76, 60, 0.3),
+          rgba(41, 128, 185, 0.3)
+        );
       }
 
       .offer-content {
         max-width: 800px;
         margin: 0 auto;
+        position: relative;
+        z-index: 1;
       }
 
       .offer-title {
@@ -477,14 +881,39 @@
         background-color: rgba(255, 255, 255, 0.1);
         backdrop-filter: blur(10px);
         padding: 40px;
-        border-radius: 10px;
+        border-radius: 15px;
         margin: 20px 0;
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
+        position: relative;
+        overflow: hidden;
+      }
+
+      .offer-box::before {
+        content: "";
+        position: absolute;
+        top: -50%;
+        left: -50%;
+        width: 200%;
+        height: 200%;
+        background: radial-gradient(
+          circle,
+          rgba(255, 255, 255, 0.1) 0%,
+          transparent 80%
+        );
+        opacity: 0;
+        transition: opacity var(--transition-medium);
+      }
+
+      .offer-box:hover::before {
+        opacity: 1;
       }
 
       .offer-box h3 {
-        font-size: 2rem;
+        font-size: 2.2rem;
         margin-bottom: 20px;
         color: var(--primary-color);
+        text-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
       }
 
       .offer-box p {
@@ -496,35 +925,88 @@
         display: flex;
         justify-content: center;
         margin: 30px 0;
+        flex-wrap: wrap;
       }
 
       .countdown-item {
-        margin: 0 10px;
+        margin: 10px;
         padding: 20px;
         background-color: rgba(0, 0, 0, 0.5);
         border-radius: 10px;
         min-width: 80px;
+        box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        transition: all var(--transition-fast);
+      }
+
+      .countdown-item:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
       }
 
       .countdown-number {
-        font-size: 2rem;
+        font-size: 2.2rem;
         font-weight: bold;
         display: block;
+        line-height: 1;
+        margin-bottom: 5px;
       }
 
       .countdown-label {
         font-size: 0.9rem;
         text-transform: uppercase;
+        opacity: 0.8;
+      }
+
+      .offer-btn {
+        margin-top: 20px;
+        position: relative;
+        overflow: hidden;
+      }
+
+      .offer-btn::after {
+        content: "";
+        position: absolute;
+        top: -50%;
+        left: -50%;
+        width: 200%;
+        height: 200%;
+        background: radial-gradient(
+          circle,
+          rgba(255, 255, 255, 0.3) 0%,
+          transparent 70%
+        );
+        opacity: 0;
+        transition: opacity 0.5s ease;
+      }
+
+      .offer-btn:hover::after {
+        opacity: 1;
       }
 
       /* Testimonials Section */
       .testimonials {
         background-color: var(--white-color);
+        position: relative;
+        overflow: hidden;
+      }
+
+      .testimonials::after {
+        content: "";
+        position: absolute;
+        bottom: -100px;
+        right: -100px;
+        width: 200px;
+        height: 200px;
+        background: rgba(231, 76, 60, 0.05);
+        border-radius: 50%;
       }
 
       .testimonials-container {
         max-width: 800px;
         margin: 0 auto;
+        position: relative;
+        z-index: 1;
       }
 
       .testimonial-list {
@@ -533,11 +1015,30 @@
 
       .testimonial-item {
         background-color: var(--light-color);
-        padding: 30px;
-        border-radius: 10px;
+        padding: 40px 30px;
+        border-radius: 15px;
         margin: 20px 0;
         text-align: center;
         position: relative;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+        transition: all var(--transition-medium);
+        display: none;
+      }
+
+      .testimonial-item.active {
+        display: block;
+        animation: fadeIn 0.5s ease;
+      }
+
+      @keyframes fadeIn {
+        from {
+          opacity: 0;
+          transform: translateY(20px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
       }
 
       .testimonial-item::before {
@@ -547,23 +1048,38 @@
         top: 10px;
         left: 20px;
         font-size: 5rem;
-        color: rgba(0, 0, 0, 0.1);
+        color: rgba(231, 76, 60, 0.2);
+        line-height: 1;
       }
 
       .testimonial-avatar {
-        width: 80px;
-        height: 80px;
+        width: 90px;
+        height: 90px;
         border-radius: 50%;
         margin: 0 auto 20px;
         border: 5px solid var(--white-color);
         box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
         overflow: hidden;
+        position: relative;
+      }
+
+      .testimonial-avatar img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        transition: transform var(--transition-medium);
+      }
+
+      .testimonial-item:hover .testimonial-avatar img {
+        transform: scale(1.1);
       }
 
       .testimonial-text {
         margin-bottom: 20px;
         font-style: italic;
         font-size: 1.1rem;
+        color: #555;
+        line-height: 1.8;
       }
 
       .testimonial-author {
@@ -571,17 +1087,19 @@
         color: var(--dark-color);
         display: block;
         margin-bottom: 5px;
+        font-size: 1.1rem;
       }
 
       .testimonial-role {
-        color: #666;
+        color: var(--primary-color);
         font-size: 0.9rem;
+        font-weight: 500;
       }
 
       .testimonial-dots {
         display: flex;
         justify-content: center;
-        margin-top: 20px;
+        margin-top: 30px;
       }
 
       .dot {
@@ -591,22 +1109,70 @@
         border-radius: 50%;
         margin: 0 5px;
         cursor: pointer;
-        transition: all 0.3s ease;
+        transition: all var(--transition-fast);
       }
 
       .dot.active {
         background-color: var(--primary-color);
+        transform: scale(1.2);
+      }
+
+      .dot:hover {
+        background-color: var(--primary-color);
+        transform: scale(1.2);
+      }
+
+      .testimonial-arrows {
+        display: flex;
+        justify-content: center;
+        margin-top: 20px;
+        gap: 20px;
+      }
+
+      .testimonial-arrow {
+        width: 40px;
+        height: 40px;
+        background: var(--white-color);
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        transition: all var(--transition-fast);
+        color: var(--dark-color);
+      }
+
+      .testimonial-arrow:hover {
+        background: var(--primary-color);
+        color: var(--white-color);
+        transform: translateY(-3px);
       }
 
       /* Contact Section */
       .contact {
         background-color: var(--light-color);
+        position: relative;
+        overflow: hidden;
+      }
+
+      .contact::before {
+        content: "";
+        position: absolute;
+        top: -100px;
+        left: -100px;
+        width: 200px;
+        height: 200px;
+        background: rgba(231, 76, 60, 0.05);
+        border-radius: 50%;
       }
 
       .contact-container {
         display: flex;
         flex-wrap: wrap;
         gap: 40px;
+        position: relative;
+        z-index: 1;
       }
 
       .contact-info {
@@ -617,16 +1183,31 @@
       .contact-info h2 {
         text-align: left;
         margin-bottom: 30px;
+        font-size: 2.2rem;
+      }
+
+      .contact-info h2::after {
+        left: 0;
+        transform: none;
       }
 
       .contact-info p {
-        margin-bottom: 15px;
+        margin-bottom: 20px;
+        color: #555;
       }
 
       .contact-detail {
         display: flex;
-        align-items: center;
-        margin-bottom: 20px;
+        align-items: flex-start;
+        margin-bottom: 25px;
+        transition: all var(--transition-fast);
+        padding: 15px;
+        border-radius: 10px;
+      }
+
+      .contact-detail:hover {
+        background: rgba(231, 76, 60, 0.05);
+        transform: translateX(5px);
       }
 
       .contact-icon {
@@ -640,30 +1221,46 @@
         align-items: center;
         margin-right: 15px;
         font-size: 1.2rem;
+        flex-shrink: 0;
+        box-shadow: 0 5px 15px rgba(231, 76, 60, 0.3);
+        transition: all var(--transition-fast);
+      }
+
+      .contact-detail:hover .contact-icon {
+        transform: scale(1.1);
       }
 
       .contact-text h4 {
         margin-bottom: 5px;
         color: var(--dark-color);
+        font-size: 1.1rem;
+      }
+
+      .contact-text p {
+        margin-bottom: 0;
+        color: #666;
       }
 
       .contact-actions {
         display: flex;
         margin-top: 30px;
+        flex-wrap: wrap;
+        gap: 15px;
       }
 
       .contact-btn {
         display: flex;
         align-items: center;
-        margin-right: 15px;
-        padding: 10px 20px;
+        padding: 12px 25px;
         border-radius: 30px;
         font-weight: 600;
-        transition: all 0.3s ease;
+        transition: all var(--transition-fast);
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
       }
 
       .contact-btn i {
-        margin-right: 8px;
+        margin-right: 10px;
+        font-size: 1.2rem;
       }
 
       .call-btn {
@@ -677,71 +1274,114 @@
       }
 
       .contact-btn:hover {
-        transform: translateY(-3px);
-        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        transform: translateY(-5px);
+        box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
       }
 
       .contact-form {
         flex: 1;
         min-width: 300px;
         background-color: var(--white-color);
-        padding: 30px;
-        border-radius: 10px;
-        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        padding: 40px;
+        border-radius: 15px;
+        box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+        position: relative;
+        overflow: hidden;
+      }
+
+      .contact-form::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        right: 0;
+        width: 150px;
+        height: 150px;
+        background: rgba(231, 76, 60, 0.05);
+        border-radius: 0 0 0 100%;
+        z-index: 0;
       }
 
       .contact-form h3 {
-        margin-bottom: 20px;
+        margin-bottom: 25px;
         color: var(--dark-color);
+        font-size: 1.5rem;
+        position: relative;
+        z-index: 1;
       }
 
       .form-group {
         margin-bottom: 20px;
+        position: relative;
+        z-index: 1;
       }
 
       .form-control {
         width: 100%;
-        padding: 12px 15px;
+        padding: 15px;
         border: 1px solid #ddd;
-        border-radius: 5px;
+        border-radius: 8px;
         font-size: 1rem;
-        transition: all 0.3s ease;
+        transition: all var(--transition-fast);
+        background: var(--white-color);
       }
 
       .form-control:focus {
         border-color: var(--primary-color);
         outline: none;
-        box-shadow: 0 0 0 3px rgba(243, 156, 18, 0.2);
+        box-shadow: 0 0 0 3px rgba(231, 76, 60, 0.2);
       }
 
       textarea.form-control {
-        min-height: 120px;
+        min-height: 150px;
         resize: vertical;
       }
 
       .form-btn {
         width: 100%;
-        padding: 12px;
+        padding: 15px;
         background-color: var(--primary-color);
         color: var(--white-color);
         border: none;
-        border-radius: 5px;
+        border-radius: 8px;
         font-size: 1rem;
         font-weight: 600;
         cursor: pointer;
-        transition: all 0.3s ease;
+        transition: all var(--transition-fast);
+        box-shadow: 0 5px 15px rgba(231, 76, 60, 0.3);
+        position: relative;
+        overflow: hidden;
+        z-index: 1;
+      }
+
+      .form-btn::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 0%;
+        height: 100%;
+        background: var(--secondary-color);
+        transition: all 0.4s cubic-bezier(0.42, 0, 0.58, 1);
+        z-index: -1;
+      }
+
+      .form-btn:hover::before {
+        width: 100%;
       }
 
       .form-btn:hover {
-        background-color: var(--secondary-color);
+        transform: translateY(-3px);
+        box-shadow: 0 10px 20px rgba(231, 76, 60, 0.4);
       }
 
       .map-container {
-        margin-top: 50px;
-        border-radius: 10px;
+        margin-top: 60px;
+        border-radius: 15px;
         overflow: hidden;
         height: 400px;
-        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+        position: relative;
+        z-index: 1;
       }
 
       .map-container iframe {
@@ -754,21 +1394,39 @@
       footer {
         background-color: var(--dark-color);
         color: var(--light-color);
-        padding: 60px 0 0;
+        padding: 80px 0 0;
+        position: relative;
+        overflow: hidden;
+      }
+
+      footer::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 5px;
+        background: linear-gradient(
+          to right,
+          var(--primary-color),
+          var(--accent-color)
+        );
       }
 
       .footer-container {
         display: grid;
         grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-        gap: 30px;
+        gap: 40px;
+        position: relative;
+        z-index: 1;
       }
 
       .footer-section h3 {
         color: var(--white-color);
-        margin-bottom: 20px;
+        margin-bottom: 25px;
         font-size: 1.3rem;
         position: relative;
-        padding-bottom: 10px;
+        padding-bottom: 15px;
       }
 
       .footer-section h3::after {
@@ -782,11 +1440,14 @@
       }
 
       .footer-about p {
-        margin-bottom: 20px;
+        margin-bottom: 25px;
+        color: #bbb;
+        line-height: 1.8;
       }
 
       .social-links {
         display: flex;
+        gap: 10px;
       }
 
       .social-link {
@@ -797,52 +1458,74 @@
         display: flex;
         justify-content: center;
         align-items: center;
-        margin-right: 10px;
-        transition: all 0.3s ease;
+        transition: all var(--transition-fast);
+        color: var(--white-color);
       }
 
       .social-link:hover {
         background-color: var(--primary-color);
-        transform: translateY(-3px);
+        transform: translateY(-5px);
+        color: var(--white-color);
       }
 
       .footer-links li {
-        margin-bottom: 10px;
+        margin-bottom: 12px;
+        transition: all var(--transition-fast);
+      }
+
+      .footer-links a {
+        color: #bbb;
+        transition: all var(--transition-fast);
+        display: inline-block;
       }
 
       .footer-links a:hover {
         color: var(--primary-color);
-        padding-left: 5px;
+        transform: translateX(5px);
+      }
+
+      .footer-links a i {
+        margin-right: 5px;
+        font-size: 0.8rem;
       }
 
       .footer-contact li {
         display: flex;
-        margin-bottom: 15px;
+        margin-bottom: 20px;
+        color: #bbb;
       }
 
       .footer-contact-icon {
-        margin-right: 10px;
+        margin-right: 15px;
         color: var(--primary-color);
+        font-size: 1.2rem;
       }
 
       .newsletter-form {
         display: flex;
+        margin-top: 20px;
       }
 
       .newsletter-input {
-        padding: 10px;
+        padding: 12px 15px;
         border: none;
-        border-radius: 5px 0 0 5px;
+        border-radius: 8px 0 0 8px;
         width: 100%;
+        font-size: 0.9rem;
+      }
+
+      .newsletter-input:focus {
+        outline: none;
       }
 
       .newsletter-btn {
-        padding: 10px 15px;
+        padding: 0 20px;
         background-color: var(--primary-color);
         color: var(--white-color);
         border: none;
-        border-radius: 0 5px 5px 0;
+        border-radius: 0 8px 8px 0;
         cursor: pointer;
+        transition: all var(--transition-fast);
       }
 
       .newsletter-btn:hover {
@@ -851,16 +1534,19 @@
 
       .copyright {
         text-align: center;
-        padding: 20px 0;
-        margin-top: 40px;
+        padding: 25px 0;
+        margin-top: 60px;
         border-top: 1px solid rgba(255, 255, 255, 0.1);
+        color: #999;
+        position: relative;
+        z-index: 1;
       }
 
       /* Back to Top Button */
       .back-to-top {
         position: fixed;
-        bottom: 20px;
-        right: 20px;
+        bottom: 30px;
+        right: 30px;
         width: 50px;
         height: 50px;
         background-color: var(--primary-color);
@@ -870,30 +1556,44 @@
         justify-content: center;
         align-items: center;
         font-size: 1.2rem;
-        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
         opacity: 0;
         visibility: hidden;
-        transition: all 0.3s ease;
+        transition: all var(--transition-fast);
         z-index: 99;
       }
 
       .back-to-top.visible {
         opacity: 1;
         visibility: visible;
+        animation: pulse 2s infinite;
+      }
+
+      @keyframes pulse {
+        0% {
+          box-shadow: 0 0 0 0 rgba(231, 76, 60, 0.7);
+        }
+        70% {
+          box-shadow: 0 0 0 10px rgba(231, 76, 60, 0);
+        }
+        100% {
+          box-shadow: 0 0 0 0 rgba(231, 76, 60, 0);
+        }
       }
 
       .back-to-top:hover {
         background-color: var(--secondary-color);
-        transform: translateY(-3px);
+        transform: translateY(-5px);
+        animation: none;
       }
 
       /* Whatsapp Floating Button */
       .whatsapp-float {
         position: fixed;
-        bottom: 20px;
-        left: 20px;
+        bottom: 30px;
+        left: 30px;
         width: 60px;
-        height: A60px;
+        height: 60px;
         background-color: #25d366;
         color: var(--white-color);
         border-radius: 50%;
@@ -901,13 +1601,34 @@
         justify-content: center;
         align-items: center;
         font-size: 1.5rem;
-        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
         z-index: 99;
-        transition: all 0.3s ease;
+        transition: all var(--transition-fast);
       }
 
       .whatsapp-float:hover {
-        transform: scale(1.1);
+        transform: scale(1.1) translateY(-5px);
+        box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+      }
+
+      .whatsapp-tooltip {
+        position: absolute;
+        left: 70px;
+        background: var(--white-color);
+        color: var(--dark-color);
+        padding: 5px 15px;
+        border-radius: 5px;
+        font-size: 0.9rem;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        opacity: 0;
+        visibility: hidden;
+        transition: all var(--transition-fast);
+        white-space: nowrap;
+      }
+
+      .whatsapp-float:hover .whatsapp-tooltip {
+        opacity: 1;
+        visibility: visible;
       }
 
       /* Animations */
@@ -933,6 +1654,28 @@
         }
       }
 
+      @keyframes fadeInLeft {
+        from {
+          opacity: 0;
+          transform: translateX(-50px);
+        }
+        to {
+          opacity: 1;
+          transform: translateX(0);
+        }
+      }
+
+      @keyframes fadeInRight {
+        from {
+          opacity: 0;
+          transform: translateX(50px);
+        }
+        to {
+          opacity: 1;
+          transform: translateX(0);
+        }
+      }
+
       /* Media Queries */
       @media (max-width: 992px) {
         .section-title {
@@ -942,9 +1685,17 @@
         .hero-content h1 {
           font-size: 3rem;
         }
+
+        .about-image::before {
+          display: none;
+        }
       }
 
       @media (max-width: 768px) {
+        section {
+          padding: 60px 0;
+        }
+
         nav ul {
           position: fixed;
           top: 70px;
@@ -952,9 +1703,11 @@
           background-color: var(--dark-color);
           flex-direction: column;
           width: 100%;
-          padding: 20px 0;
+          height: calc(100vh - 70px);
+          padding: 30px 0;
           box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
-          transition: all 0.3s ease;
+          transition: all var(--transition-fast);
+          z-index: 999;
         }
 
         nav ul.show {
@@ -993,12 +1746,28 @@
 
         .contact-actions {
           flex-direction: column;
+          align-items: flex-start;
         }
 
         .contact-btn {
-          margin-right: 0;
-          margin-bottom: 10px;
+          width: 100%;
           justify-content: center;
+        }
+
+        .whatsapp-float {
+          width: 50px;
+          height: 50px;
+          font-size: 1.3rem;
+          bottom: 20px;
+          left: 20px;
+        }
+
+        .back-to-top {
+          width: 40px;
+          height: 40px;
+          font-size: 1rem;
+          bottom: 20px;
+          right: 20px;
         }
       }
 
@@ -1031,6 +1800,27 @@
         .footer-container {
           grid-template-columns: 1fr;
         }
+
+        .contact-form {
+          padding: 30px 20px;
+        }
+
+        .offer-box {
+          padding: 30px 20px;
+        }
+
+        .countdown {
+          gap: 10px;
+        }
+
+        .countdown-item {
+          min-width: 60px;
+          padding: 10px;
+        }
+
+        .countdown-number {
+          font-size: 1.3rem;
+        }
       }
     </style>
   </head>
@@ -1050,13 +1840,31 @@
         </div>
         <nav>
           <ul id="nav-menu">
-            <li><a href="#hero">Home</a></li>
-            <li><a href="#about">About</a></li>
-            <li><a href="#collection">Collection</a></li>
-            <li><a href="#products">Products</a></li>
-            <li><a href="#offers">Offers</a></li>
-            <li><a href="#testimonials">Testimonials</a></li>
-            <li><a href="#contact">Contact</a></li>
+            <li>
+              <a href="#hero"><i class="fas fa-home"></i> Home</a>
+            </li>
+            <li>
+              <a href="#about"><i class="fas fa-store"></i> About</a>
+            </li>
+            <li>
+              <a href="#collection"><i class="fas fa-tshirt"></i> Collection</a>
+            </li>
+            <li>
+              <a href="#products"
+                ><i class="fas fa-shopping-bag"></i> Products</a
+              >
+            </li>
+            <li>
+              <a href="#offers"><i class="fas fa-tags"></i> Offers</a>
+            </li>
+            <li>
+              <a href="#testimonials"
+                ><i class="fas fa-star"></i> Testimonials</a
+              >
+            </li>
+            <li>
+              <a href="#contact"><i class="fas fa-phone-alt"></i> Contact</a>
+            </li>
           </ul>
         </nav>
       </div>
@@ -1064,22 +1872,34 @@
 
     <!-- Hero Section -->
     <section class="hero" id="hero">
-      <div class="hero-content">
+      <div class="hero-content" data-aos="fade-up" data-aos-duration="1000">
         <h1>Elevate Your Style with Soni Men's Wear</h1>
         <p>
           Explore a sophisticated selection of premium men's clothing tailored
           for every occasion.
         </p>
-        <a href="#collection" class="btn hero-btn">Shop Now</a>
+        <a href="#collection" class="btn hero-btn"
+          >Shop Now <i class="fas fa-arrow-right"></i
+        ></a>
       </div>
+      <a href="#about" class="hero-scroll">
+        <i class="fas fa-chevron-down"></i>
+      </a>
     </section>
 
     <!-- About Us -->
     <section class="about" id="about">
       <div class="container">
-        <h2 class="section-title">About Us</h2>
+        <h2 class="section-title" data-aos="fade-up">About Us</h2>
+        <p class="section-subtitle" data-aos="fade-up" data-aos-delay="100">
+          Your ultimate destination for premium men's clothing in Deoria
+        </p>
         <div class="about-content">
-          <div class="about-text">
+          <div
+            class="about-text"
+            data-aos="fade-right"
+            data-aos-duration="1000"
+          >
             <p>
               Soni Men's Wear is your ultimate destination for premium men's
               clothing in Deoria. We specialize in offering a wide range of
@@ -1096,35 +1916,47 @@
                 <div class="feature-icon">
                   <i class="fas fa-check-circle"></i>
                 </div>
-                <div>
-                  Exclusive Men's Collection: From traditional to modern styles.
+                <div class="feature-text">
+                  <h4>Exclusive Men's Collection</h4>
+                  <p>From traditional to modern styles for every occasion.</p>
                 </div>
               </div>
               <div class="feature-item">
                 <div class="feature-icon">
-                  <i class="fas fa-check-circle"></i>
+                  <i class="fas fa-ruler"></i>
                 </div>
-                <div>All Sizes Available: Perfect fits for everyone.</div>
+                <div class="feature-text">
+                  <h4>All Sizes Available</h4>
+                  <p>Perfect fits for everyone, no matter your body type.</p>
+                </div>
               </div>
               <div class="feature-item">
                 <div class="feature-icon">
-                  <i class="fas fa-check-circle"></i>
+                  <i class="fas fa-medal"></i>
                 </div>
-                <div>Quality & Style: Comfort meets fashion.</div>
+                <div class="feature-text">
+                  <h4>Quality & Style</h4>
+                  <p>Premium fabrics where comfort meets fashion.</p>
+                </div>
               </div>
               <div class="feature-item">
                 <div class="feature-icon">
-                  <i class="fas fa-check-circle"></i>
+                  <i class="fas fa-tag"></i>
                 </div>
-                <div>
-                  Affordable Prices: Trendy fashion without breaking the bank.
+                <div class="feature-text">
+                  <h4>Affordable Prices</h4>
+                  <p>Trendy fashion without breaking the bank.</p>
                 </div>
               </div>
             </div>
           </div>
-          <div class="about-image">
+          <div
+            class="about-image"
+            data-aos="fade-left"
+            data-aos-duration="1000"
+          >
             <img
-              src="https://via.placeholder.com/600x400"
+              src="https://images.unsplash.com/photo-1441984904996-e0b6ba687e04?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=600&q=80"
               alt="Soni Men's Wear Store"
             />
           </div>
@@ -1135,12 +1967,16 @@
     <!-- Exclusive Collection -->
     <section class="collection" id="collection">
       <div class="container">
-        <h2 class="section-title">Exclusive Collection</h2>
+        <h2 class="section-title" data-aos="fade-up">Exclusive Collection</h2>
+        <p class="section-subtitle" data-aos="fade-up" data-aos-delay="100">
+          Discover our handpicked selection of premium men's clothing
+        </p>
         <div class="collection-grid">
-          <div class="collection-item">
+          <div class="collection-item" data-aos="fade-up" data-aos-delay="100">
+            <span class="collection-tag">Best Seller</span>
             <div class="collection-image">
               <img
-                src="https://via.placeholder.com/400x300"
+                src="https://images.unsplash.com/photo-1617137968427-85924c800a22?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=400&q=80"
                 alt="Formal Attire"
               />
             </div>
@@ -1151,12 +1987,13 @@
                 and comfort.
               </p>
               <span class="collection-price">From ₹1,999</span>
+              <a href="#contact" class="collection-btn">Contact</a>
             </div>
           </div>
-          <div class="collection-item">
+          <div class="collection-item" data-aos="fade-up" data-aos-delay="200">
             <div class="collection-image">
               <img
-                src="https://via.placeholder.com/400x300"
+                src="https://images.unsplash.com/photo-1489987707025-afc232f7ea0f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=400&q=80"
                 alt="Casual Polos"
               />
             </div>
@@ -1164,12 +2001,14 @@
               <h3>Versatile Casual Polos</h3>
               <p>Effortlessly stylish, perfect for any occasion.</p>
               <span class="collection-price">From ₹799</span>
+              <a href="#contact" class="collection-btn">Contact</a>
             </div>
           </div>
-          <div class="collection-item">
+          <div class="collection-item" data-aos="fade-up" data-aos-delay="300">
+            <span class="collection-tag">New Arrival</span>
             <div class="collection-image">
               <img
-                src="https://via.placeholder.com/400x300"
+                src="https://images.unsplash.com/photo-1591047139829-d91aecb6caea?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=400&q=80"
                 alt="Fashion Jackets"
               />
             </div>
@@ -1177,6 +2016,7 @@
               <h3>Fashion-Forward Jackets</h3>
               <p>On-trend styles that keep you warm and stylish.</p>
               <span class="collection-price">From ₹2,499</span>
+              <a href="#contact" class="collection-btn">Contact</a>
             </div>
           </div>
         </div>
@@ -1186,83 +2026,146 @@
     <!-- Products Section -->
     <section class="products" id="products">
       <div class="container">
-        <h2 class="section-title">Our Products</h2>
-        <div class="product-categories">
+        <h2 class="section-title" data-aos="fade-up">Our Products</h2>
+        <p class="section-subtitle" data-aos="fade-up" data-aos-delay="100">
+          Browse our latest collection of high-quality men's clothing
+        </p>
+        <div class="product-categories" data-aos="fade-up" data-aos-delay="200">
           <button class="category-btn active">All</button>
           <button class="category-btn">Formal</button>
           <button class="category-btn">Casual</button>
           <button class="category-btn">Festive</button>
-          <button class="category-btn">Accessories</button>
+          <!-- <button class="category-btn">Accessories</button> -->
         </div>
         <div class="products-grid">
-          <div class="product-item">
+          <div class="product-item" data-aos="fade-up" data-aos-delay="100">
             <span class="product-badge">New</span>
             <div class="product-image">
-              <img src="https://via.placeholder.com/300x300" alt="Product 1" />
+              <img
+                src="https://images.unsplash.com/photo-1598033129183-c4f50c736f10?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=400&q=80"
+                alt="Premium Formal Shirt"
+              />
             </div>
             <div class="product-info">
               <h3>Premium Formal Shirt</h3>
+              <div class="product-rating">
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star-half-alt"></i>
+              </div>
               <div class="price">
                 <span class="current-price">₹1,299</span>
                 <span class="old-price">₹1,599</span>
               </div>
               <div class="product-cta">
-                <!-- <button class="cart-btn">Add to Cart</button> -->
+                <a
+                  href="https://wa.me/919450282832?text=I'm%20interested%20in%20the%20Premium%20Formal%20Shirt%20for%20₹1,299"
+                  class="cart-btn"
+                >
+                  <i class="fab fa-whatsapp"></i> Enquire Now
+                </a>
                 <button class="wishlist-btn">
                   <i class="far fa-heart"></i>
                 </button>
               </div>
             </div>
           </div>
-          <div class="product-item">
+          <div class="product-item" data-aos="fade-up" data-aos-delay="200">
             <div class="product-image">
-              <img src="https://via.placeholder.com/300x300" alt="Product 2" />
+              <img
+                src="https://images.unsplash.com/photo-1576566588028-4147f3842f27?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=400&q=80"
+                alt="Casual Cotton T-Shirt"
+              />
             </div>
             <div class="product-info">
               <h3>Casual Cotton T-Shirt</h3>
+              <div class="product-rating">
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="far fa-star"></i>
+              </div>
               <div class="price">
                 <span class="current-price">₹699</span>
                 <span class="old-price">₹899</span>
               </div>
               <div class="product-cta">
-                <!-- <button class="cart-btn">Add to Cart</button> -->
+                <a
+                  href="https://wa.me/919450282832?text=I'm%20interested%20in%20the%20Casual%20Cotton%20T-Shirt%20for%20₹699"
+                  class="cart-btn"
+                >
+                  <i class="fab fa-whatsapp"></i> Enquire Now
+                </a>
                 <button class="wishlist-btn">
                   <i class="far fa-heart"></i>
                 </button>
               </div>
             </div>
           </div>
-          <div class="product-item">
+          <div class="product-item" data-aos="fade-up" data-aos-delay="300">
             <span class="product-badge">Sale</span>
             <div class="product-image">
-              <img src="https://via.placeholder.com/300x300" alt="Product 3" />
+              <img
+                src="https://images.unsplash.com/photo-1541099649105-f69ad21f3246?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=400&q=80"
+                alt="Slim Fit Jeans"
+              />
             </div>
             <div class="product-info">
               <h3>Slim Fit Jeans</h3>
+              <div class="product-rating">
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+              </div>
               <div class="price">
                 <span class="current-price">₹1,499</span>
                 <span class="old-price">₹1,999</span>
               </div>
               <div class="product-cta">
-                <!-- <button class="cart-btn">Add to Cart</button> -->
+                <a
+                  href="https://wa.me/919450282832?text=I'm%20interested%20in%20the%20Slim%20Fit%20Jeans%20for%20₹1,499"
+                  class="cart-btn"
+                >
+                  <i class="fab fa-whatsapp"></i> Enquire Now
+                </a>
                 <button class="wishlist-btn">
                   <i class="far fa-heart"></i>
                 </button>
               </div>
             </div>
           </div>
-          <div class="product-item">
+          <div class="product-item" data-aos="fade-up" data-aos-delay="400">
             <div class="product-image">
-              <img src="https://via.placeholder.com/300x300" alt="Product 4" />
+              <img
+                src="https://images.unsplash.com/photo-1593032465175-481ac7f401a0?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=400&q=80"
+                alt="Designer Blazer"
+              />
             </div>
             <div class="product-info">
               <h3>Designer Blazer</h3>
+              <div class="product-rating">
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star-half-alt"></i>
+              </div>
               <div class="price">
                 <span class="current-price">₹3,999</span>
                 <span class="old-price">₹4,999</span>
               </div>
               <div class="product-cta">
-                <!-- <button class="cart-btn">Add to Cart</button> -->
+                <a
+                  href="https://wa.me/919450282832?text=I'm%20interested%20in%20the%20Designer%20Blazer%20for%20₹3,999"
+                  class="cart-btn"
+                >
+                  <i class="fab fa-whatsapp"></i> Enquire Now
+                </a>
                 <button class="wishlist-btn">
                   <i class="far fa-heart"></i>
                 </button>
@@ -1276,9 +2179,19 @@
     <!-- Special Offers -->
     <section class="offers" id="offers">
       <div class="container">
-        <h2 class="section-title offer-title">Special Offers</h2>
+        <h2 class="section-title offer-title" data-aos="fade-up">
+          Special Offers
+        </h2>
+        <p
+          class="section-subtitle"
+          data-aos="fade-up"
+          data-aos-delay="100"
+          style="color: #ddd"
+        >
+          Limited time deals you don't want to miss
+        </p>
         <div class="offer-content">
-          <div class="offer-box">
+          <div class="offer-box" data-aos="zoom-in" data-aos-delay="200">
             <h3>End of Season SALE</h3>
             <p>Grab up to 50% off on premium men's wear. Limited time offer!</p>
             <div class="countdown">
@@ -1299,11 +2212,14 @@
                 <span class="countdown-label">Seconds</span>
               </div>
             </div>
-            <a href="#collection" class="btn">Shop Now</a>
+            <a href="#contact" class="btn offer-btn"
+              >Contact Us Now <i class="fas fa-arrow-right"></i
+            ></a>
           </div>
-          <p>
+          <p data-aos="fade-up" data-aos-delay="300">
             Join our membership program and enjoy exclusive discounts and
-            promotions all year round.
+            promotions all year round. Ask about our loyalty program when you
+            visit!
           </p>
         </div>
       </div>
@@ -1312,41 +2228,56 @@
     <!-- Testimonials -->
     <section class="testimonials" id="testimonials">
       <div class="container">
-        <h2 class="section-title">What Our Customers Say</h2>
+        <h2 class="section-title" data-aos="fade-up">What Our Customers Say</h2>
+        <p class="section-subtitle" data-aos="fade-up" data-aos-delay="100">
+          Hear from our satisfied customers about their experience
+        </p>
         <div class="testimonials-container">
-          <div class="testimonial-list">
+          <div class="testimonial-list" data-aos="fade-up" data-aos-delay="200">
             <div class="testimonial-item active">
               <div class="testimonial-avatar">
-                <img src="https://via.placeholder.com/150" alt="Customer 1" />
+                <img
+                  src="https://randomuser.me/api/portraits/men/32.jpg"
+                  alt="Customer 1"
+                />
               </div>
               <p class="testimonial-text">
                 "Soni Men's Wear always has the best collection! Quality and
                 style at great prices! I've been shopping here for years and
-                have never been disappointed."
+                have never been disappointed. The staff is incredibly helpful
+                and knowledgeable."
               </p>
               <span class="testimonial-author">Rohan Sharma</span>
               <span class="testimonial-role">Marketing Executive</span>
             </div>
             <div class="testimonial-item">
               <div class="testimonial-avatar">
-                <img src="https://via.placeholder.com/150" alt="Customer 2" />
+                <img
+                  src="https://randomuser.me/api/portraits/men/44.jpg"
+                  alt="Customer 2"
+                />
               </div>
               <p class="testimonial-text">
                 "The perfect place to find formal and casual wear. The staff is
                 incredibly helpful and the quality of clothes is exceptional.
-                Highly recommend!"
+                Highly recommend! I always get compliments when I wear outfits
+                from Soni Men's Wear."
               </p>
               <span class="testimonial-author">Amit Patel</span>
               <span class="testimonial-role">Software Engineer</span>
             </div>
             <div class="testimonial-item">
               <div class="testimonial-avatar">
-                <img src="https://via.placeholder.com/150" alt="Customer 3" />
+                <img
+                  src="https://randomuser.me/api/portraits/men/67.jpg"
+                  alt="Customer 3"
+                />
               </div>
               <p class="testimonial-text">
                 "I shopped at Soni Men's Wear for my wedding and they provided
                 the best traditional and western outfits. Excellent customer
-                service and attention to detail!"
+                service and attention to detail! My entire family was impressed
+                with the quality."
               </p>
               <span class="testimonial-author">Vijay Singh</span>
               <span class="testimonial-role">Bank Manager</span>
@@ -1357,6 +2288,14 @@
             <span class="dot"></span>
             <span class="dot"></span>
           </div>
+          <div class="testimonial-arrows">
+            <div class="testimonial-arrow prev-testimonial">
+              <i class="fas fa-chevron-left"></i>
+            </div>
+            <div class="testimonial-arrow next-testimonial">
+              <i class="fas fa-chevron-right"></i>
+            </div>
+          </div>
         </div>
       </div>
     </section>
@@ -1364,9 +2303,16 @@
     <!-- Contact Us -->
     <section class="contact" id="contact">
       <div class="container">
-        <h2 class="section-title">Contact Us</h2>
+        <h2 class="section-title" data-aos="fade-up">Contact Us</h2>
+        <p class="section-subtitle" data-aos="fade-up" data-aos-delay="100">
+          We'd love to hear from you! Get in touch with us
+        </p>
         <div class="contact-container">
-          <div class="contact-info">
+          <div
+            class="contact-info"
+            data-aos="fade-right"
+            data-aos-duration="1000"
+          >
             <p>
               We'd love to hear from you! Visit our store or get in touch with
               us through any of the following channels:
@@ -1405,14 +2351,18 @@
                 <i class="fas fa-phone-alt"></i> Call Now
               </a>
               <a
-                href="https://wa.me/919450282832"
+                href="https://wa.me/919450282832?text=Hello,%20I'm%20interested%20in%20your%20products"
                 class="contact-btn whatsapp-btn"
               >
                 <i class="fab fa-whatsapp"></i> WhatsApp
               </a>
             </div>
           </div>
-          <div class="contact-form">
+          <div
+            class="contact-form"
+            data-aos="fade-left"
+            data-aos-duration="1000"
+          >
             <h3>Send a Message</h3>
             <form id="contactForm">
               <div class="form-group">
@@ -1446,11 +2396,13 @@
                   required
                 ></textarea>
               </div>
-              <button type="submit" class="form-btn">Send Message</button>
+              <button type="submit" class="form-btn">
+                <i class="fas fa-paper-plane"></i> Send Message
+              </button>
             </form>
           </div>
         </div>
-        <div class="map-container">
+        <div class="map-container" data-aos="zoom-in" data-aos-delay="300">
           <iframe
             src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d14210.340896404044!2d83.77920801553802!3d26.50271889052403!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x399145235877e0c7%3A0x8d7211aaae0d6523!2sDeoria%2C%20Uttar%20Pradesh!5e0!3m2!1sen!2sin!4v1614257457910!5m2!1sen!2sin"
             allowfullscreen=""
@@ -1485,13 +2437,39 @@
           <div class="footer-section footer-links">
             <h3>Quick Links</h3>
             <ul>
-              <li><a href="#hero">Home</a></li>
-              <li><a href="#about">About Us</a></li>
-              <li><a href="#collection">Collection</a></li>
-              <li><a href="#products">Products</a></li>
-              <li><a href="#offers">Special Offers</a></li>
-              <li><a href="#testimonials">Testimonials</a></li>
-              <li><a href="#contact">Contact Us</a></li>
+              <li>
+                <a href="#hero"><i class="fas fa-chevron-right"></i> Home</a>
+              </li>
+              <li>
+                <a href="#about"
+                  ><i class="fas fa-chevron-right"></i> About Us</a
+                >
+              </li>
+              <li>
+                <a href="#collection"
+                  ><i class="fas fa-chevron-right"></i> Collection</a
+                >
+              </li>
+              <li>
+                <a href="#products"
+                  ><i class="fas fa-chevron-right"></i> Products</a
+                >
+              </li>
+              <li>
+                <a href="#offers"
+                  ><i class="fas fa-chevron-right"></i> Special Offers</a
+                >
+              </li>
+              <li>
+                <a href="#testimonials"
+                  ><i class="fas fa-chevron-right"></i> Testimonials</a
+                >
+              </li>
+              <li>
+                <a href="#contact"
+                  ><i class="fas fa-chevron-right"></i> Contact Us</a
+                >
+              </li>
             </ul>
           </div>
           <div class="footer-section footer-contact">
@@ -1563,12 +2541,27 @@
     </a>
 
     <!-- WhatsApp Floating Button -->
-    <a href="https://wa.me/919450282832" class="whatsapp-float">
+    <a
+      href="https://wa.me/919450282832?text=Hello,%20I'm%20interested%20in%20your%20products"
+      class="whatsapp-float"
+    >
       <i class="fab fa-whatsapp"></i>
+      <span class="whatsapp-tooltip">Chat with us!</span>
     </a>
+
+    <!-- AOS Animation Library -->
+    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
 
     <!-- JavaScript -->
     <script>
+      // Initialize AOS
+      AOS.init({
+        duration: 800,
+        easing: "ease",
+        once: true,
+        offset: 100,
+      });
+
       // Mobile Menu Toggle
       const mobileToggle = document.getElementById("mobile-toggle");
       const navMenu = document.getElementById("nav-menu");
@@ -1619,33 +2612,62 @@
       // Testimonial slider
       const testimonialDots = document.querySelectorAll(".dot");
       const testimonialItems = document.querySelectorAll(".testimonial-item");
+      const prevTestimonial = document.querySelector(".prev-testimonial");
+      const nextTestimonial = document.querySelector(".next-testimonial");
 
-      testimonialDots.forEach((dot, index) => {
-        dot.addEventListener("click", () => {
-          // Remove active class from all dots and items
-          testimonialDots.forEach((d) => d.classList.remove("active"));
-          testimonialItems.forEach((item) => item.classList.remove("active"));
-
-          // Add active class to current dot and item
-          dot.classList.add("active");
-          testimonialItems[index].classList.add("active");
-        });
-      });
-
-      // Auto testimonial slider
       let currentTestimonial = 0;
-      const testimonialAutoSlide = () => {
+
+      const showTestimonial = (index) => {
+        // Remove active class from all dots and items
         testimonialDots.forEach((d) => d.classList.remove("active"));
         testimonialItems.forEach((item) => item.classList.remove("active"));
 
-        currentTestimonial = (currentTestimonial + 1) % testimonialItems.length;
+        // Add active class to current dot and item
+        testimonialDots[index].classList.add("active");
+        testimonialItems[index].classList.add("active");
 
-        testimonialDots[currentTestimonial].classList.add("active");
-        testimonialItems[currentTestimonial].classList.add("active");
+        currentTestimonial = index;
+      };
+
+      testimonialDots.forEach((dot, index) => {
+        dot.addEventListener("click", () => {
+          showTestimonial(index);
+        });
+      });
+
+      prevTestimonial.addEventListener("click", () => {
+        currentTestimonial =
+          (currentTestimonial - 1 + testimonialItems.length) %
+          testimonialItems.length;
+        showTestimonial(currentTestimonial);
+      });
+
+      nextTestimonial.addEventListener("click", () => {
+        currentTestimonial = (currentTestimonial + 1) % testimonialItems.length;
+        showTestimonial(currentTestimonial);
+      });
+
+      // Auto testimonial slider
+      const testimonialAutoSlide = () => {
+        currentTestimonial = (currentTestimonial + 1) % testimonialItems.length;
+        showTestimonial(currentTestimonial);
       };
 
       // Change testimonial every 5 seconds
-      setInterval(testimonialAutoSlide, 5000);
+      let testimonialInterval = setInterval(testimonialAutoSlide, 5000);
+
+      // Pause auto-slide when user interacts with testimonials
+      document
+        .querySelector(".testimonial-list")
+        .addEventListener("mouseenter", () => {
+          clearInterval(testimonialInterval);
+        });
+
+      document
+        .querySelector(".testimonial-list")
+        .addEventListener("mouseleave", () => {
+          testimonialInterval = setInterval(testimonialAutoSlide, 5000);
+        });
 
       // Product category filter
       const categoryBtns = document.querySelectorAll(".category-btn");
@@ -1718,12 +2740,244 @@
         });
       }
 
+      // Add to wishlist functionality
+      const wishlistBtns = document.querySelectorAll(".wishlist-btn");
+      wishlistBtns.forEach((btn) => {
+        btn.addEventListener("click", function () {
+          const icon = this.querySelector("i");
+          if (icon.classList.contains("far")) {
+            icon.classList.remove("far");
+            icon.classList.add("fas");
+            this.style.color = "#e74c3c";
+          } else {
+            icon.classList.remove("fas");
+            icon.classList.add("far");
+            this.style.color = "#666";
+          }
+        });
+      });
+
       // Preloader
       window.addEventListener("load", () => {
         const preloader = document.getElementById("preloader");
         setTimeout(() => {
-          preloader.style.display = "none";
-        }, 500);
+          preloader.style.opacity = "0";
+          setTimeout(() => {
+            preloader.style.display = "none";
+          }, 500);
+        }, 800);
+      });
+
+      // Image lazy loading
+      document.addEventListener("DOMContentLoaded", function () {
+        const lazyImages = document.querySelectorAll("img");
+
+        if ("IntersectionObserver" in window) {
+          const imageObserver = new IntersectionObserver(
+            (entries, observer) => {
+              entries.forEach((entry) => {
+                if (entry.isIntersecting) {
+                  const image = entry.target;
+                  image.src = image.src;
+                  imageObserver.unobserve(image);
+                }
+              });
+            }
+          );
+
+          lazyImages.forEach((img) => {
+            imageObserver.observe(img);
+          });
+        }
+      });
+      // Wait for the document to fully load
+      document.addEventListener("DOMContentLoaded", function () {
+        // Get all category buttons and products
+        const categoryButtons = document.querySelectorAll(".category-btn");
+        const productItems = document.querySelectorAll(".product-item");
+
+        // Define products with their categories
+        const products = [
+          {
+            id: 1,
+            name: "Premium Formal Shirt",
+            category: "Formal",
+            image:
+              "https://images.unsplash.com/photo-1598033129183-c4f50c736f10?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=400&q=80",
+            price: "₹1,299",
+            oldPrice: "₹1,599",
+            rating: 4.5,
+            badge: "New",
+          },
+          {
+            id: 2,
+            name: "Casual Cotton T-Shirt",
+            category: "Casual",
+            image:
+              "https://images.unsplash.com/photo-1576566588028-4147f3842f27?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=400&q=80",
+            price: "₹699",
+            oldPrice: "₹899",
+            rating: 4,
+            badge: "",
+          },
+          {
+            id: 3,
+            name: "Slim Fit Jeans",
+            category: "Casual",
+            image:
+              "https://images.unsplash.com/photo-1541099649105-f69ad21f3246?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=400&q=80",
+            price: "₹1,499",
+            oldPrice: "₹1,999",
+            rating: 5,
+            badge: "Sale",
+          },
+          {
+            id: 4,
+            name: "Designer Blazer",
+            category: "Formal",
+            image:
+              "https://images.unsplash.com/photo-1593032465175-481ac7f401a0?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=400&q=80",
+            price: "₹3,999",
+            oldPrice: "₹4,999",
+            rating: 4.5,
+            badge: "",
+          },
+          // Add more sample products for the Festive and Accessories categories
+          {
+            id: 5,
+            name: "Kurta Pajama Set",
+            category: "Festive",
+            image:
+              "https://images.unsplash.com/photo-1598539962625-9519be935df8?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=400&q=80",
+            price: "₹2,499",
+            oldPrice: "₹2,999",
+            rating: 4.5,
+            badge: "New",
+          },
+        ];
+
+        // Function to generate star rating HTML
+        function generateRatingStars(rating) {
+          let starsHTML = "";
+          const fullStars = Math.floor(rating);
+          const hasHalfStar = rating % 1 !== 0;
+
+          for (let i = 1; i <= 5; i++) {
+            if (i <= fullStars) {
+              starsHTML += '<i class="fas fa-star"></i>';
+            } else if (i === fullStars + 1 && hasHalfStar) {
+              starsHTML += '<i class="fas fa-star-half-alt"></i>';
+            } else {
+              starsHTML += '<i class="far fa-star"></i>';
+            }
+          }
+
+          return starsHTML;
+        }
+
+        // Function to create product HTML
+        function createProductHTML(product) {
+          return `
+      <div class="product-item" data-category="${
+        product.category
+      }" data-aos="fade-up">
+        ${
+          product.badge
+            ? `<span class="product-badge">${product.badge}</span>`
+            : ""
+        }
+        <div class="product-image">
+          <img src="${product.image}" alt="${product.name}" />
+        </div>
+        <div class="product-info">
+          <h3>${product.name}</h3>
+          <div class="product-rating">
+            ${generateRatingStars(product.rating)}
+          </div>
+          <div class="price">
+            <span class="current-price">${product.price}</span>
+            <span class="old-price">${product.oldPrice}</span>
+          </div>
+          <div class="product-cta">
+            <a
+              href="https://wa.me/919450282832?text=I'm%20interested%20in%20the%20${encodeURIComponent(
+                product.name
+              )}%20for%20${encodeURIComponent(product.price)}"
+              class="cart-btn"
+            >
+              <i class="fab fa-whatsapp"></i> Enquire Now
+            </a>
+            <button class="wishlist-btn">
+              <i class="far fa-heart"></i>
+            </button>
+          </div>
+        </div>
+      </div>
+    `;
+        }
+
+        // Function to render products based on category
+        function filterProducts(category) {
+          const productsGrid = document.querySelector(".products-grid");
+          productsGrid.innerHTML = ""; // Clear current products
+
+          let filteredProducts;
+
+          if (category === "All") {
+            filteredProducts = products;
+          } else {
+            filteredProducts = products.filter(
+              (product) => product.category === category
+            );
+          }
+
+          // Add products to the grid
+          filteredProducts.forEach((product) => {
+            productsGrid.innerHTML += createProductHTML(product);
+          });
+
+          // Reinitialize AOS for new elements
+          if (typeof AOS !== "undefined") {
+            AOS.refresh();
+          }
+        }
+
+        // Add click event listeners to category buttons
+        categoryButtons.forEach((button) => {
+          button.addEventListener("click", function () {
+            // Remove active class from all buttons
+            categoryButtons.forEach((btn) => btn.classList.remove("active"));
+
+            // Add active class to clicked button
+            this.classList.add("active");
+
+            // Filter products based on category
+            const category = this.textContent;
+            filterProducts(category);
+          });
+        });
+
+        // Initialize wishlist functionality
+        document.addEventListener("click", function (e) {
+          if (e.target.closest(".wishlist-btn")) {
+            const wishlistBtn = e.target.closest(".wishlist-btn");
+            const icon = wishlistBtn.querySelector("i");
+
+            // Toggle heart icon
+            if (icon.classList.contains("far")) {
+              icon.classList.remove("far");
+              icon.classList.add("fas");
+              icon.style.color = "#ff3e6c";
+            } else {
+              icon.classList.remove("fas");
+              icon.classList.add("far");
+              icon.style.color = "";
+            }
+          }
+        });
+
+        // Initialize with all products
+        filterProducts("All");
       });
     </script>
   </body>
